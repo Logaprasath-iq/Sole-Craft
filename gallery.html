@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restoration Gallery — Sole Craft</title>
+  <meta name="description" content="Witness the transformation. View our detailed before & after cobbler gallery spanning soles, luxury leather dyes, and custom sneaker care.">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  
+  <!-- Tailwind CSS CDN + Custom Configuration -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            gold: 'var(--color-gold)',
+            'gold-hover': 'var(--color-gold-hover)',
+            cognac: 'var(--color-cognac)',
+            tan: 'var(--color-tan)',
+            'text-primary': 'var(--text-primary)',
+            'text-secondary': 'var(--text-secondary)',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#FAF7F0] text-[#1C1C1C] dark:bg-[#0F0F0F] dark:text-[#F3ECE0] transition-colors duration-500">
+
+  <!-- Loader Overlay -->
+  <div id="page-loader">
+    <div class="loader-shoe mb-4"></div>
+    <div class="text-gold font-serif text-lg tracking-widest animate-pulse">SOLE CRAFT</div>
+  </div>
+
+  <!-- Premium Sticky Header Navbar -->
+  <header class="fixed top-0 left-0 w-full z-50 py-3 lg:py-5 transition-all duration-300 bg-transparent">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="assets/images/logo.png" alt="Sole Craft Logo" class="w-8 h-8 rounded-full border border-gold/30 object-cover">
+        <span class="font-serif text-2xl font-bold tracking-wider text-gold-gradient">SOLE CRAFT</span>
+      </a>
+
+      <!-- Desktop Navigation links with Dropdowns -->
+      <nav class="hidden lg:flex items-center gap-8 text-xs uppercase tracking-widest font-bold text-text-primary">
+        <!-- Home Dropdown -->
+        <div class="nav-item-has-dropdown relative py-2">
+          <button class="hover:text-gold transition flex items-center gap-1.5 uppercase font-bold tracking-widest">
+            Home <i class="bi bi-chevron-down text-[9px]"></i>
+          </button>
+          <div class="nav-dropdown">
+            <a href="index.html" class="nav-dropdown-item">Home 1 (General)</a>
+            <a href="home-2.html" class="nav-dropdown-item">Home 2 (Luxury)</a>
+          </div>
+        </div>
+
+        <a href="about.html" class="hover:text-gold transition">About</a>
+        <a href="services.html" class="hover:text-gold transition">Services</a>
+        <a href="gallery.html" class="hover:text-gold transition">Gallery</a>
+        <a href="pricing.html" class="hover:text-gold transition">Pricing</a>
+        <a href="blog.html" class="hover:text-gold transition">Blog</a>
+
+        <!-- Pages Dropdown -->
+        <div class="nav-item-has-dropdown relative py-2">
+          <button class="hover:text-gold transition flex items-center gap-1.5 uppercase font-bold tracking-widest">
+            Pages <i class="bi bi-chevron-down text-[9px]"></i>
+          </button>
+          <div class="nav-dropdown">
+            <a href="404.html" class="nav-dropdown-item">404 Error</a>
+            <a href="coming-soon.html" class="nav-dropdown-item">Coming Soon</a>
+            <a href="maintenance.html" class="nav-dropdown-item">Under Maintenance</a>
+          </div>
+        </div>
+
+        <a href="contact.html" class="hover:text-gold transition">Contact</a>
+      </nav>
+
+      <!-- Right Action Items -->
+      <div class="hidden lg:flex items-center gap-4">
+        <!-- Search Icon -->
+        <button id="search-btn" class="text-text-primary hover:text-gold transition p-2">
+          <i class="bi bi-search text-lg"></i>
+        </button>
+        <!-- Theme Toggle Circular Button -->
+        <button id="theme-toggle" class="theme-circle-btn">
+          <i class="bi bi-sun-fill text-lg"></i>
+        </button>
+        <!-- Language/RTL Toggle Pill Button -->
+        <button id="lang-toggle" class="rtl-toggle-pill">
+          <i class="bi bi-arrow-left-right text-xs"></i>
+          <span id="lang-text">RTL</span>
+        </button>
+        <!-- Login link (Pill Border) -->
+        <a href="login.html" class="border border-gold text-gold hover:bg-gold hover:text-black transition px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider font-bold">Login</a>
+        <!-- CTA button (Solid Gold Pill for Signup) -->
+        <a href="register.html" class="magnetic-btn bg-gold hover:bg-gold-hover text-black text-xs uppercase tracking-wider font-bold py-3 px-6 rounded-full shadow-lg transition">Sign Up</a>
+      </div>
+
+      <!-- Mobile Hamburger button -->
+      <button id="mobile-menu-btn" class="lg:hidden text-text-primary p-2">
+        <i class="bi bi-list text-2xl"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer menu -->
+    <div id="mobile-menu" class="hidden lg:hidden flex-col bg-[#FAF7F0] dark:bg-[#0F0F0F] border-b border-[#8C6239]/10 py-4 px-6 gap-4 text-center text-sm font-semibold uppercase tracking-wider">
+      <a href="index.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">Home 1 (General)</a>
+      <a href="home-2.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">Home 2 (Luxury)</a>
+      <a href="about.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">About</a>
+      <a href="services.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">Services</a>
+      <a href="gallery.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">Gallery</a>
+      <a href="pricing.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">Pricing</a>
+      <a href="blog.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">Blog</a>
+      <a href="404.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">404 Error</a>
+      <a href="coming-soon.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">Coming Soon</a>
+      <a href="contact.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">Contact</a>
+      <div class="flex justify-center gap-6 py-2 border-b border-gray-100 dark:border-gray-800">
+        <button onclick="document.getElementById('search-btn').click()"><i class="bi bi-search text-lg"></i></button>
+        <button id="mobile-theme-btn" onclick="document.getElementById('theme-toggle').click()"><i class="bi bi-moon"></i></button>
+        <button id="mobile-lang-btn" onclick="document.getElementById('lang-toggle').click()">AR</button>
+      </div>
+      <a href="login.html" class="py-2 hover:text-gold transition">Login</a>
+      <a href="register.html" class="py-2 hover:text-gold transition">Sign Up</a>
+    </div>
+  </header>
+
+  <!-- Banner -->
+  <!-- Hero Banner Section -->
+  <section class="relative pt-48 pb-24 bg-cover bg-center" style="background-image: url('assets/images/hero7.jpg');">
+    <div class="absolute inset-0 bg-black/80 pointer-events-none"></div>
+    <div class="container mx-auto px-6 text-center max-w-3xl relative z-10 page-transition">
+      <span class="text-gold font-serif italic text-lg font-semibold tracking-wider uppercase">Visual Proof</span>
+      <h1 class="text-4xl lg:text-6xl font-serif font-bold text-white mt-2 mb-6">Before & After Gallery</h1>
+      <p class="text-gray-300 text-base leading-relaxed">
+        Hover and drag the sliders below to inspect our craftsmanship. Every repair has a story of renewal.
+      </p>
+    </div>
+  </section>
+
+  <!-- Gallery Main Section -->
+  <section class="py-24 relative z-10">
+    <div class="container mx-auto px-6">
+      
+      <!-- Filter Tags -->
+      <div class="flex flex-wrap justify-center gap-2 mb-16 text-xs font-semibold uppercase tracking-wider page-transition">
+        <button onclick="filterGallery('all')" class="gallery-filter-btn px-6 py-3 rounded-full bg-gold text-black transition">All Restorations</button>
+        <button onclick="filterGallery('sole')" class="gallery-filter-btn px-6 py-3 rounded-full bg-[#FAF7F0] dark:bg-[#1E1E1E] text-text-primary border border-gold/20 hover:border-gold transition">Sole Repair</button>
+        <button onclick="filterGallery('leather')" class="gallery-filter-btn px-6 py-3 rounded-full bg-[#FAF7F0] dark:bg-[#1E1E1E] text-text-primary border border-gold/20 hover:border-gold transition">Leather Restoration</button>
+        <button onclick="filterGallery('sneaker')" class="gallery-filter-btn px-6 py-3 rounded-full bg-[#FAF7F0] dark:bg-[#1E1E1E] text-text-primary border border-gold/20 hover:border-gold transition">Sneaker Restoration</button>
+        <button onclick="filterGallery('cleaning')" class="gallery-filter-btn px-6 py-3 rounded-full bg-[#FAF7F0] dark:bg-[#1E1E1E] text-text-primary border border-gold/20 hover:border-gold transition">Cleaning & Polish</button>
+      </div>
+
+      <!-- Sliders Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="gallery-grid">
+        
+        <!-- Slider 1: Sole Repair -->
+        <div class="gallery-item-card" data-category="sole">
+          <div class="ba-slider w-full">
+            <img src="assets/images/gallery1.jpg" class="lightbox-trigger" alt="After Resoling">
+            <div class="resize-img absolute top-0 left-0 h-full overflow-hidden" style="width: 50%;">
+              <img src="assets/images/gallery2.jpg" class="max-w-none w-full h-full object-cover" alt="Before Resoling">
+            </div>
+            <div class="handle"></div>
+          </div>
+          <div class="mt-4">
+            <h4 class="font-serif font-bold text-lg text-text-primary">Oxford Resoling</h4>
+            <p class="text-xs text-text-secondary">Vibram lug outsole transplant on Italian dress oxfords.</p>
+          </div>
+        </div>
+
+        <!-- Slider 2: Leather Restoration -->
+        <div class="gallery-item-card" data-category="leather">
+          <div class="ba-slider w-full">
+            <img src="assets/images/gallery3.jpg" class="lightbox-trigger" alt="After Conditioning">
+            <div class="resize-img absolute top-0 left-0 h-full overflow-hidden" style="width: 50%;">
+              <img src="assets/images/gallery4.jpg" class="max-w-none w-full h-full object-cover" alt="Before Conditioning">
+            </div>
+            <div class="handle"></div>
+          </div>
+          <div class="mt-4">
+            <h4 class="font-serif font-bold text-lg text-text-primary">Leather Conditioning</h4>
+            <p class="text-xs text-text-secondary">Scratch elimination & rehydration on aniline boots.</p>
+          </div>
+        </div>
+
+        <!-- Slider 3: Sneaker Restoration -->
+        <div class="gallery-item-card" data-category="sneaker">
+          <div class="ba-slider w-full">
+            <img src="assets/images/gallery5.jpg" class="lightbox-trigger" alt="After White-wash">
+            <div class="resize-img absolute top-0 left-0 h-full overflow-hidden" style="width: 50%;">
+              <img src="assets/images/gallery6.jpg" class="max-w-none w-full h-full object-cover" alt="Before Yellowed">
+            </div>
+            <div class="handle"></div>
+          </div>
+          <div class="mt-4">
+            <h4 class="font-serif font-bold text-lg text-text-primary">Midsole Unyellowing</h4>
+            <p class="text-xs text-text-secondary">Oxygen-peroxide ultraviolet bath for sneaker soles.</p>
+          </div>
+        </div>
+
+        <!-- Slider 4: Cleaning -->
+        <div class="gallery-item-card" data-category="cleaning">
+          <div class="ba-slider w-full">
+            <img src="assets/images/gallery7.jpg" class="lightbox-trigger" alt="After Polish">
+            <div class="resize-img absolute top-0 left-0 h-full overflow-hidden" style="width: 50%;">
+              <img src="assets/images/gallery8.jpg" class="max-w-none w-full h-full object-cover" alt="Before Polish">
+            </div>
+            <div class="handle"></div>
+          </div>
+          <div class="mt-4">
+            <h4 class="font-serif font-bold text-lg text-text-primary">Mirror Polish</h4>
+            <p class="text-xs text-text-secondary">Beeswax multi-layer spit shine on premium wingtips.</p>
+          </div>
+        </div>
+
+        <!-- Slider 5: Patent Leather Reshine -->
+        <div class="gallery-item-card" data-category="cleaning">
+          <div class="ba-slider w-full">
+            <img src="assets/images/gallery9.jpg" class="lightbox-trigger" alt="After Patent Reshine">
+            <div class="resize-img absolute top-0 left-0 h-full overflow-hidden" style="width: 50%;">
+              <img src="assets/images/gallery10.jpg" class="max-w-none w-full h-full object-cover" alt="Before Patent Reshine">
+            </div>
+            <div class="handle"></div>
+          </div>
+          <div class="mt-4">
+            <h4 class="font-serif font-bold text-lg text-text-primary">Patent Leather Reshine</h4>
+            <p class="text-xs text-text-secondary">Glossy restoration and scratch removal for formal patent wear.</p>
+          </div>
+        </div>
+
+        <!-- Slider 6: Suede Re-dyeing & Clean -->
+        <div class="gallery-item-card" data-category="leather">
+          <div class="ba-slider w-full">
+            <img src="assets/images/gallery11.jpg" class="lightbox-trigger" alt="After Suede Restoration">
+            <div class="resize-img absolute top-0 left-0 h-full overflow-hidden" style="width: 50%;">
+              <img src="assets/images/gallery12.jpg" class="max-w-none w-full h-full object-cover" alt="Before Suede Restoration">
+            </div>
+            <div class="handle"></div>
+          </div>
+          <div class="mt-4">
+            <h4 class="font-serif font-bold text-lg text-text-primary">Suede Re-dyeing & Clean</h4>
+            <p class="text-xs text-text-secondary">Pigment infusion and fibers fluff restoration on suede loafers.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Lightbox Modal container -->
+  <div class="lightbox" id="gallery-lightbox">
+    <span class="lightbox-close" id="lightbox-close-btn">&times;</span>
+    <img class="lightbox-content" id="lightbox-img" src="">
+  </div>
+
+  <!-- Stylist Footer matching mockup -->
+  <footer class="bg-[#0C0C0C] text-[#FAF7F0] pt-20 pb-8 font-sans border-t border-gold/15 relative z-10 w-full">
+    <div class="mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-16 text-left w-full max-w-none">
+      
+      <!-- Column 1: Brand details & Socials -->
+      <div class="space-y-6">
+        <a href="index.html" class="flex items-center gap-2">
+          <img src="assets/images/logo.png" alt="Sole Craft Logo" class="w-8 h-8 rounded-full border border-gold/30 object-cover">
+          <span class="font-serif text-2xl font-bold tracking-wider text-gold-gradient">SOLE CRAFT</span>
+        </a>
+        <p class="text-gray-400 text-xs leading-relaxed font-sans">
+          We Restore. You Walk Better.. Premium shoe repair, restoration and craftsmanship service.
+        </p>
+        <!-- Social Icons (Functional Outbound Links) -->
+        <div class="flex flex-wrap gap-2">
+          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-gray-800 flex items-center justify-center text-gold hover:border-gold hover:bg-gold hover:text-black transition"><i class="bi bi-facebook text-xs"></i></a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-gray-800 flex items-center justify-center text-gold hover:border-gold hover:bg-gold hover:text-black transition"><i class="bi bi-instagram text-xs"></i></a>
+          <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-gray-800 flex items-center justify-center text-gold hover:border-gold hover:bg-gold hover:text-black transition"><i class="bi bi-youtube text-xs"></i></a>
+          <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-gray-800 flex items-center justify-center text-gold hover:border-gold hover:bg-gold hover:text-black transition"><i class="bi bi-whatsapp text-xs"></i></a>
+          <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-gray-800 flex items-center justify-center text-gold hover:border-gold hover:bg-gold hover:text-black transition"><i class="bi bi-twitter-x text-xs"></i></a>
+        </div>
+      </div>
+
+      <!-- Column 2: Subscribe Newsletter Form -->
+      <div class="space-y-4">
+        <h4 class="text-xs uppercase font-extrabold tracking-widest text-gold mb-2">Subscribe</h4>
+        <p class="text-gray-400 text-xs leading-relaxed font-sans">
+          Get restoration guides, seasonal leather maintenance tips, and exclusive pricing alerts.
+        </p>
+        <form onsubmit="event.preventDefault(); showToast('Subscribed to Newsletter!', 'success'); this.reset();" class="flex flex-col gap-2 pt-1">
+          <input type="email" placeholder="Your email address" class="bg-[#171717] border border-gray-800 rounded-full py-2 px-4 text-xs text-[#FAF7F0] focus:outline-none focus:border-gold w-full" required>
+          <button type="submit" class="bg-gold hover:bg-gold-hover text-black px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider transition w-full">Subscribe</button>
+        </form>
+      </div>
+
+      <!-- Column 3: Explore -->
+      <div>
+        <h4 class="text-xs uppercase font-extrabold tracking-widest text-gold mb-6">Explore</h4>
+        <ul class="space-y-3 text-xs text-gray-400">
+          <li><a href="index.html" class="hover:text-gold transition">Home</a></li>
+          <li><a href="about.html" class="hover:text-gold transition">About</a></li>
+          <li><a href="services.html" class="hover:text-gold transition">Services</a></li>
+          <li><a href="pricing.html" class="hover:text-gold transition">Pricing</a></li>
+          <li><a href="blog.html" class="hover:text-gold transition">Blog</a></li>
+          <li><a href="gallery.html" class="hover:text-gold transition">Gallery</a></li>
+          <li><a href="contact.html" class="hover:text-gold transition">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Services -->
+      <div>
+        <h4 class="text-xs uppercase font-extrabold tracking-widest text-gold mb-6">Services</h4>
+        <ul class="space-y-3 text-xs text-gray-400 font-sans">
+          <li><a href="service-details.html?service=sole-replacement" class="hover:text-gold transition">Sole Replacement</a></li>
+          <li><a href="service-details.html?service=heel-repair" class="hover:text-gold transition">Heel Repair</a></li>
+          <li><a href="service-details.html?service=leather-restoration" class="hover:text-gold transition">Leather Restoration</a></li>
+          <li><a href="service-details.html?service=sneaker-restoration" class="hover:text-gold transition">Sneaker Restoration</a></li>
+          <li><a href="services.html" class="hover:text-gold transition">Shoe Cleaning</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 5: Support -->
+      <div>
+        <h4 class="text-xs uppercase font-extrabold tracking-widest text-gold mb-6">Support</h4>
+        <ul class="space-y-3 text-xs text-gray-400 font-sans">
+          <li><a href="booking.html" class="hover:text-gold transition">Booking</a></li>
+          <li><a href="about.html" class="hover:text-gold transition">FAQs</a></li>
+          <li><a href="coming-soon.html" class="hover:text-gold transition">Privacy</a></li>
+          <li><a href="coming-soon.html" class="hover:text-gold transition">Terms</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 6: Contact -->
+      <div>
+        <h4 class="text-xs uppercase font-extrabold tracking-widest text-gold mb-6">Contact</h4>
+        <div class="space-y-3 text-xs text-gray-400 leading-relaxed font-sans">
+          <p>42 Leather Lane, Craft District,<br>Mumbai 400001, India</p>
+          <p class="font-bold text-white">+91 98765 43210</p>
+          <p class="text-gold">hello@solecraft.in</p>
+          <p class="text-[10px]">Mon–Sat: 9:00 AM – 7:00 PM | Sun: 10:00 AM – 4:00 PM</p>
+          <a href="contact.html" class="text-gold font-bold hover:underline block pt-1">Get Directions &rarr;</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom copyright -->
+    <div class="mx-auto px-6 lg:px-12 border-t border-gray-900 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4 w-full max-w-none">
+      <div>&copy; 2026 Sole Craft. All Rights Reserved.</div>
+      <div class="flex gap-4 font-sans text-[11px]">
+        <a href="coming-soon.html" class="hover:text-gold transition">Terms of Service</a>
+        <span class="text-gray-800">|</span>
+        <a href="coming-soon.html" class="hover:text-gold transition">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/main.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initAllSliders();
+      setupLightbox();
+    });
+
+    // Before After Sliders Drag Logic initializer
+    function initAllSliders() {
+      const sliders = document.querySelectorAll('.ba-slider');
+      
+      sliders.forEach(slider => {
+        const resizeImg = slider.querySelector('.resize-img');
+        const handle = slider.querySelector('.handle');
+        
+        let active = false;
+        
+        slider.addEventListener('mousedown', () => active = true);
+        window.addEventListener('mouseup', () => active = false);
+        slider.addEventListener('mousemove', drag);
+        
+        slider.addEventListener('touchstart', () => active = true);
+        window.addEventListener('touchend', () => active = false);
+        slider.addEventListener('touchmove', drag);
+
+        function drag(e) {
+          if (!active) return;
+          
+          let clientX;
+          if (e.type === 'touchmove') {
+            clientX = e.touches[0].clientX;
+          } else {
+            clientX = e.clientX;
+          }
+          
+          const rect = slider.getBoundingClientRect();
+          let positionX = clientX - rect.left;
+          
+          if (positionX < 0) positionX = 0;
+          if (positionX > rect.width) positionX = rect.width;
+          
+          const pct = (positionX / rect.width) * 100;
+          
+          resizeImg.style.width = pct + '%';
+          handle.style.left = pct + '%';
+        }
+      });
+    }
+
+    // Lightbox modal triggers
+    function setupLightbox() {
+      const triggers = document.querySelectorAll('.lightbox-trigger');
+      const lightbox = document.getElementById('gallery-lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const closeBtn = document.getElementById('lightbox-close-btn');
+
+      triggers.forEach(trig => {
+        trig.addEventListener('click', (e) => {
+          e.preventDefault();
+          lightbox.style.display = 'flex';
+          lightboxImg.src = trig.src;
+        });
+      });
+
+      if (closeBtn && lightbox) {
+        closeBtn.addEventListener('click', () => {
+          lightbox.style.display = 'none';
+        });
+        lightbox.addEventListener('click', (e) => {
+          if (e.target === lightbox) {
+            lightbox.style.display = 'none';
+          }
+        });
+      }
+    }
+
+    // Filter cards
+    function filterGallery(cat) {
+      // Toggle button classes
+      const buttons = document.querySelectorAll('.gallery-filter-btn');
+      buttons.forEach(btn => {
+        btn.className = "gallery-filter-btn px-6 py-3 rounded-full bg-[#FAF7F0] dark:bg-[#1E1E1E] text-text-primary border border-gold/20 hover:border-gold transition";
+      });
+      event.target.className = "gallery-filter-btn px-6 py-3 rounded-full bg-gold text-black transition";
+
+      const items = document.querySelectorAll('.gallery-item-card');
+      items.forEach(item => {
+        if (cat === 'all' || item.dataset.category === cat) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

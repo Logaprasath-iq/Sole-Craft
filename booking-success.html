@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Repair Booked! — Sole Craft</title>
+  <meta name="description" content="Your shoe repair has been successfully booked at Sole Craft Studio. Print your receipt ticket or check your booking status.">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  
+  <!-- Tailwind CSS CDN + Custom Configuration -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            gold: 'var(--color-gold)',
+            'gold-hover': 'var(--color-gold-hover)',
+            cognac: 'var(--color-cognac)',
+            tan: 'var(--color-tan)',
+            'text-primary': 'var(--text-primary)',
+            'text-secondary': 'var(--text-secondary)',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#FAF7F0] text-[#1C1C1C] dark:bg-[#0F0F0F] dark:text-[#F3ECE0] transition-colors duration-500 min-h-screen flex items-center justify-center py-20 relative">
+
+  <!-- Loader Overlay -->
+  <div id="page-loader">
+    <div class="loader-shoe mb-4"></div>
+    <div class="text-gold font-serif text-lg tracking-widest animate-pulse">SOLE CRAFT</div>
+  </div>
+
+  <div class="container mx-auto px-6 max-w-lg relative z-10 page-transition">
+    
+    <!-- Success Ticket Receipt Card -->
+    <div class="glass-panel rounded-3xl overflow-hidden border border-gold/15 shadow-2xl relative">
+      
+      <!-- Green banner -->
+      <div class="bg-green-600/90 text-white text-center py-6">
+        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+          <i class="bi bi-check-lg text-2xl text-white"></i>
+        </div>
+        <h2 class="text-2xl font-serif font-bold uppercase tracking-wider">Your Repair is Booked!</h2>
+        <p class="text-xs text-green-150 mt-1">Ticket ID: <span id="success-id" class="font-mono font-bold text-white">SC-XXXX</span></p>
+      </div>
+
+      <!-- Ticket contents -->
+      <div class="p-8 space-y-5 text-sm">
+        
+        <div class="flex justify-between border-b border-gray-200 dark:border-gray-800 pb-3">
+          <span class="text-text-secondary">Customer Name:</span>
+          <strong id="success-name" class="text-text-primary">---</strong>
+        </div>
+
+        <div class="flex justify-between border-b border-gray-200 dark:border-gray-800 pb-3">
+          <span class="text-text-secondary">Selected Service:</span>
+          <strong id="success-service" class="text-text-primary">---</strong>
+        </div>
+
+        <div class="flex justify-between border-b border-gray-200 dark:border-gray-800 pb-3">
+          <span class="text-text-secondary">Shoe Type:</span>
+          <strong id="success-shoe-type" class="text-text-primary">---</strong>
+        </div>
+
+        <div class="flex justify-between border-b border-gray-200 dark:border-gray-800 pb-3">
+          <span class="text-text-secondary">Pickup Date:</span>
+          <strong id="success-date" class="text-text-primary">---</strong>
+        </div>
+
+        <div class="flex justify-between border-b border-gray-200 dark:border-gray-800 pb-3">
+          <span class="text-text-secondary">Pickup Time:</span>
+          <strong id="success-time" class="text-text-primary">---</strong>
+        </div>
+
+        <div class="flex justify-between pt-2">
+          <span class="text-text-secondary text-base">Estimated Charge:</span>
+          <strong id="success-price" class="text-gold text-xl">₹0</strong>
+        </div>
+
+        <div class="bg-gray-100 dark:bg-gray-900/60 p-4 rounded-xl text-center text-xs text-text-secondary leading-relaxed border border-gold/5 mt-4">
+          <i class="bi bi-truck text-gold mr-1"></i> A delivery courier will contact you 1 hour prior to pickup on your selected date. Keep shoes ready.
+        </div>
+
+      </div>
+
+      <!-- Ticket footer buttons -->
+      <div class="p-8 pt-0 flex gap-4">
+        <a href="dashboard.html?tab=bookings" class="flex-1 text-center bg-gold hover:bg-gold-hover text-black py-3 rounded-full text-xs font-bold uppercase tracking-wider transition shadow-md">
+          View Booking
+        </a>
+        <a href="index.html" class="flex-1 text-center border border-gold text-gold hover:bg-gold hover:text-black py-3 rounded-full text-xs font-bold uppercase tracking-wider transition">
+          Back to Home
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/booking.js"></script>
+</body>
+</html>

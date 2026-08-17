@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Dashboard — Sole Craft</title>
+  <meta name="description" content="Manage your Sole Craft shoe repairs, favorites list, profile settings and track courier pickup states.">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  
+  <!-- Tailwind CSS CDN + Custom Configuration -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            gold: 'var(--color-gold)',
+            'gold-hover': 'var(--color-gold-hover)',
+            cognac: 'var(--color-cognac)',
+            tan: 'var(--color-tan)',
+            'text-primary': 'var(--text-primary)',
+            'text-secondary': 'var(--text-secondary)',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#FAF7F0] text-[#1C1C1C] dark:bg-[#0F0F0F] dark:text-[#F3ECE0] transition-colors duration-500 min-h-screen flex flex-col justify-between">
+
+  <!-- Loader Overlay -->
+  <div id="page-loader">
+    <div class="loader-shoe mb-4"></div>
+    <div class="text-gold font-serif text-lg tracking-widest animate-pulse">SOLE CRAFT</div>
+  </div>
+
+  <!-- Header Navbar -->
+  <!-- Premium Sticky Header Navbar -->
+  <header class="fixed top-0 left-0 w-full z-50 py-3 lg:py-5 transition-all duration-300 bg-transparent">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="assets/images/logo.png" alt="Sole Craft Logo" class="w-8 h-8 rounded-full border border-gold/30 object-cover">
+        <span class="font-serif text-2xl font-bold tracking-wider text-gold-gradient">SOLE CRAFT</span>
+      </a>
+
+      <!-- Desktop Navigation links with Dropdowns -->
+      <nav class="hidden lg:flex items-center gap-8 text-xs uppercase tracking-widest font-bold text-text-primary">
+        <!-- Home Dropdown -->
+        <div class="nav-item-has-dropdown relative py-2">
+          <button class="hover:text-gold transition flex items-center gap-1.5 uppercase font-bold tracking-widest">
+            Home <i class="bi bi-chevron-down text-[9px]"></i>
+          </button>
+          <div class="nav-dropdown">
+            <a href="index.html" class="nav-dropdown-item">Home 1 (General)</a>
+            <a href="home-2.html" class="nav-dropdown-item">Home 2 (Luxury)</a>
+          </div>
+        </div>
+
+        <a href="about.html" class="hover:text-gold transition">About</a>
+        <a href="services.html" class="hover:text-gold transition">Services</a>
+        <a href="gallery.html" class="hover:text-gold transition">Gallery</a>
+        <a href="pricing.html" class="hover:text-gold transition">Pricing</a>
+        <a href="blog.html" class="hover:text-gold transition">Blog</a>
+
+        <!-- Pages Dropdown -->
+        <div class="nav-item-has-dropdown relative py-2">
+          <button class="hover:text-gold transition flex items-center gap-1.5 uppercase font-bold tracking-widest">
+            Pages <i class="bi bi-chevron-down text-[9px]"></i>
+          </button>
+          <div class="nav-dropdown">
+            <a href="404.html" class="nav-dropdown-item">404 Error</a>
+            <a href="coming-soon.html" class="nav-dropdown-item">Coming Soon</a>
+            <a href="coming-soon.html?mode=maintenance" class="nav-dropdown-item">Under Maintenance</a>
+          </div>
+        </div>
+
+        <a href="contact.html" class="hover:text-gold transition">Contact</a>
+      </nav>
+
+      <!-- Right Action Items -->
+      <div class="hidden lg:flex items-center gap-4">
+        <!-- Search Icon -->
+        <button id="search-btn" class="text-text-primary hover:text-gold transition p-2">
+          <i class="bi bi-search text-lg"></i>
+        </button>
+        <!-- Theme Toggle Circular Button -->
+        <button id="theme-toggle" class="theme-circle-btn">
+          <i class="bi bi-sun-fill text-lg"></i>
+        </button>
+        <!-- Language/RTL Toggle Pill Button -->
+        <button id="lang-toggle" class="rtl-toggle-pill">
+          <i class="bi bi-arrow-left-right text-xs"></i>
+          <span id="lang-text">RTL</span>
+        </button>
+        <!-- Login link (Pill Border) -->
+        <a href="login.html" class="border border-gold text-gold hover:bg-gold hover:text-black transition px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider font-bold">Login</a>
+        <!-- CTA button (Solid Gold Pill for Signup) -->
+        <a href="register.html" class="magnetic-btn bg-gold hover:bg-gold-hover text-black text-xs uppercase tracking-wider font-bold py-3 px-6 rounded-full shadow-lg transition">Sign Up</a>
+      </div>
+
+      <!-- Mobile Hamburger button -->
+      <button id="mobile-menu-btn" class="lg:hidden text-text-primary p-2">
+        <i class="bi bi-list text-2xl"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer menu -->
+    <div id="mobile-menu" class="hidden lg:hidden flex-col bg-[#FAF7F0] dark:bg-[#0F0F0F] border-b border-[#8C6239]/10 py-4 px-6 gap-4 text-center text-sm font-semibold uppercase tracking-wider">
+      <a href="index.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">Home 1 (General)</a>
+      <a href="home-2.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">Home 2 (Luxury)</a>
+      <a href="about.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">About</a>
+      <a href="services.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">Services</a>
+      <a href="gallery.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">Gallery</a>
+      <a href="pricing.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">Pricing</a>
+      <a href="blog.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">Blog</a>
+      <a href="404.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">404 Error</a>
+      <a href="coming-soon.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">Coming Soon</a>
+      <a href="contact.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">Contact</a>
+      <div class="flex justify-center gap-6 py-2 border-b border-gray-100 dark:border-gray-800">
+        <button onclick="document.getElementById('search-btn').click()"><i class="bi bi-search text-lg"></i></button>
+        <button id="mobile-theme-btn" onclick="document.getElementById('theme-toggle').click()"><i class="bi bi-moon"></i></button>
+        <button id="mobile-lang-btn" onclick="document.getElementById('lang-toggle').click()">AR</button>
+      </div>
+      <a href="login.html" class="py-2 hover:text-gold transition">Login</a>
+      <a href="register.html" class="py-2 hover:text-gold transition">Sign Up</a>
+    </div>
+  </header>
+
+  <!-- Dashboard Body Grid -->
+  <main class="flex-grow container mx-auto px-6 py-12 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      
+      <!-- Left side Navigation Panel -->
+      <aside class="glass-panel p-6 rounded-2xl h-fit space-y-2">
+        <button onclick="switchTab('overview')" id="tab-btn-overview" class="tab-btn w-full text-left px-4 py-3 rounded-lg text-xs font-bold uppercase tracking-wider transition bg-gold text-black">
+          <i class="bi bi-grid-fill mr-2"></i> Overview
+        </button>
+        <button onclick="switchTab('bookings')" id="tab-btn-bookings" class="tab-btn w-full text-left px-4 py-3 rounded-lg text-xs font-bold uppercase tracking-wider transition hover:bg-gold/10 hover:text-gold">
+          <i class="bi bi-ticket-detailed-fill mr-2"></i> My Bookings
+        </button>
+        <button onclick="switchTab('favorites')" id="tab-btn-favorites" class="tab-btn w-full text-left px-4 py-3 rounded-lg text-xs font-bold uppercase tracking-wider transition hover:bg-gold/10 hover:text-gold">
+          <i class="bi bi-heart-fill mr-2"></i> Saved Services
+        </button>
+        <button onclick="switchTab('profile')" id="tab-btn-profile" class="tab-btn w-full text-left px-4 py-3 rounded-lg text-xs font-bold uppercase tracking-wider transition hover:bg-gold/10 hover:text-gold">
+          <i class="bi bi-person-fill-gear mr-2"></i> Profile settings
+        </button>
+      </aside>
+
+      <!-- Right side Display Section -->
+      <div class="lg:col-span-3 space-y-6">
+        
+        <!-- SECTION: Overview -->
+        <div id="tab-sec-overview" class="tab-sec space-y-6">
+          <h2 class="text-3xl font-serif font-bold text-text-primary">Dashboard Overview</h2>
+          
+          <!-- Metric Blocks -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div class="glass-panel p-6 rounded-2xl">
+              <span class="text-gray-500 text-xs uppercase block mb-1">Active Bookings</span>
+              <strong id="stat-active-count" class="text-3xl font-serif text-gold">0</strong>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl">
+              <span class="text-gray-500 text-xs uppercase block mb-1">Saved Services</span>
+              <strong id="stat-saved-count" class="text-3xl font-serif text-gold">0</strong>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl">
+              <span class="text-gray-500 text-xs uppercase block mb-1">Inquiries Replied</span>
+              <strong class="text-3xl font-serif text-gold">1</strong>
+            </div>
+          </div>
+
+          <!-- Recent Bookings brief block -->
+          <div class="glass-panel p-6 rounded-2xl">
+            <h3 class="font-serif text-xl font-bold mb-4">Recent Bookings</h3>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead>
+                  <tr class="border-b border-gray-200 dark:border-gray-800 pb-2 text-gray-500 uppercase tracking-widest text-[9px]">
+                    <th class="pb-2">Booking ID</th>
+                    <th class="pb-2">Service</th>
+                    <th class="pb-2">Date</th>
+                    <th class="pb-2">Status</th>
+                    <th class="pb-2">Estimate Price</th>
+                  </tr>
+                </thead>
+                <tbody id="overview-bookings-tbody">
+                  <!-- JS Injects -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION: My Bookings -->
+        <div id="tab-sec-bookings" class="tab-sec hidden space-y-6">
+          <h2 class="text-3xl font-serif font-bold text-text-primary">My Repair Bookings</h2>
+          <div class="glass-panel p-6 rounded-2xl">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead>
+                  <tr class="border-b border-gray-200 dark:border-gray-800 pb-2 text-gray-500 uppercase text-[9px] tracking-widest">
+                    <th class="pb-2">Booking ID</th>
+                    <th class="pb-2">Service</th>
+                    <th class="pb-2">Shoe Type</th>
+                    <th class="pb-2">Date</th>
+                    <th class="pb-2">Status</th>
+                    <th class="pb-2">Price</th>
+                    <th class="pb-2">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="bookings-tbody">
+                  <!-- JS Injects -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION: Saved Services -->
+        <div id="tab-sec-favorites" class="tab-sec hidden space-y-6">
+          <h2 class="text-3xl font-serif font-bold text-text-primary">Saved Services</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="favs-grid">
+            <!-- JS Injects cards -->
+          </div>
+        </div>
+
+        <!-- SECTION: Profile -->
+        <div id="tab-sec-profile" class="tab-sec hidden space-y-6">
+          <h2 class="text-3xl font-serif font-bold text-text-primary">Profile Settings</h2>
+          <div class="glass-panel p-6 rounded-2xl border border-gold/10">
+            <form id="profile-form" class="space-y-4 max-w-lg">
+              <div>
+                <label class="block text-xs uppercase font-bold text-text-secondary mb-1">Full Name</label>
+                <input type="text" id="prof-name" class="w-full bg-[#FAF7F0] dark:bg-[#171717] border border-gold/10 rounded-lg py-2.5 px-4 text-xs text-text-primary focus:outline-none focus:border-gold" required>
+              </div>
+              <div>
+                <label class="block text-xs uppercase font-bold text-text-secondary mb-1">Email Address (Cannot change)</label>
+                <input type="email" id="prof-email" class="w-full bg-[#FAF7F0] dark:bg-[#171717]/60 border border-gold/10 rounded-lg py-2.5 px-4 text-xs text-text-primary/50 focus:outline-none" readonly>
+              </div>
+              <div>
+                <label class="block text-xs uppercase font-bold text-text-secondary mb-1">Phone Number</label>
+                <input type="tel" id="prof-phone" class="w-full bg-[#FAF7F0] dark:bg-[#171717] border border-gold/10 rounded-lg py-2.5 px-4 text-xs text-text-primary focus:outline-none focus:border-gold" required>
+              </div>
+              <button type="submit" class="bg-gold hover:bg-gold-hover text-black py-2 px-6 rounded-full text-xs font-bold uppercase tracking-wider transition mt-4">
+                Save Changes
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Details Modal -->
+  <div id="booking-detail-modal" class="hidden fixed inset-0 z-[9999] bg-black bg-opacity-70 backdrop-blur-md items-center justify-center p-4">
+    <div class="glass-panel w-full max-w-md rounded-2xl shadow-2xl p-6 relative">
+      <h3 class="text-2xl font-serif font-bold text-text-primary mb-4">Booking Ticket Receipt</h3>
+      <button onclick="closeDetailModal()" class="absolute top-4 right-4 text-gray-500 hover:text-text-primary"><i class="bi bi-x-lg text-xl"></i></button>
+      
+      <div class="space-y-3.5 text-xs text-text-secondary" id="modal-ticket-details">
+        <!-- JS Injects details -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Stylist Footer matching mockup -->
+  <footer class="bg-[#0C0C0C] text-[#FAF7F0] pt-20 pb-8 font-sans border-t border-gold/15 relative z-10 w-full">
+    <div class="mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-16 text-left w-full max-w-none">
+      
+      <!-- Column 1: Brand details & Socials -->
+      <div class="space-y-6">
+        <a href="index.html" class="flex items-center gap-2">
+          <img src="assets/images/logo.png" alt="Sole Craft Logo" class="w-8 h-8 rounded-full border border-gold/30 object-cover">
+          <span class="font-serif text-2xl font-bold tracking-wider text-gold-gradient">SOLE CRAFT</span>
+        </a>
+        <p class="text-gray-400 text-xs leading-relaxed font-sans">
+          We Restore. You Walk Better.. Premium shoe repair, restoration and craftsmanship service.
+        </p>
+        <!-- Social Icons (Functional Outbound Links) -->
+        <div class="flex flex-wrap gap-2">
+          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-gray-800 flex items-center justify-center text-gold hover:border-gold hover:bg-gold hover:text-black transition"><i class="bi bi-facebook text-xs"></i></a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-gray-800 flex items-center justify-center text-gold hover:border-gold hover:bg-gold hover:text-black transition"><i class="bi bi-instagram text-xs"></i></a>
+          <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-gray-800 flex items-center justify-center text-gold hover:border-gold hover:bg-gold hover:text-black transition"><i class="bi bi-youtube text-xs"></i></a>
+          <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-gray-800 flex items-center justify-center text-gold hover:border-gold hover:bg-gold hover:text-black transition"><i class="bi bi-whatsapp text-xs"></i></a>
+          <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-gray-800 flex items-center justify-center text-gold hover:border-gold hover:bg-gold hover:text-black transition"><i class="bi bi-twitter-x text-xs"></i></a>
+        </div>
+      </div>
+
+      <!-- Column 2: Subscribe Newsletter Form -->
+      <div class="space-y-4">
+        <h4 class="text-xs uppercase font-extrabold tracking-widest text-gold mb-2">Subscribe</h4>
+        <p class="text-gray-400 text-xs leading-relaxed font-sans">
+          Get restoration guides, seasonal leather maintenance tips, and exclusive pricing alerts.
+        </p>
+        <form onsubmit="event.preventDefault(); showToast('Subscribed to Newsletter!', 'success'); this.reset();" class="flex flex-col gap-2 pt-1">
+          <input type="email" placeholder="Your email address" class="bg-[#171717] border border-gray-800 rounded-full py-2 px-4 text-xs text-[#FAF7F0] focus:outline-none focus:border-gold w-full" required>
+          <button type="submit" class="bg-gold hover:bg-gold-hover text-black px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider transition w-full">Subscribe</button>
+        </form>
+      </div>
+
+      <!-- Column 3: Explore -->
+      <div>
+        <h4 class="text-xs uppercase font-extrabold tracking-widest text-gold mb-6">Explore</h4>
+        <ul class="space-y-3 text-xs text-gray-400">
+          <li><a href="index.html" class="hover:text-gold transition">Home</a></li>
+          <li><a href="about.html" class="hover:text-gold transition">About</a></li>
+          <li><a href="services.html" class="hover:text-gold transition">Services</a></li>
+          <li><a href="pricing.html" class="hover:text-gold transition">Pricing</a></li>
+          <li><a href="blog.html" class="hover:text-gold transition">Blog</a></li>
+          <li><a href="gallery.html" class="hover:text-gold transition">Gallery</a></li>
+          <li><a href="contact.html" class="hover:text-gold transition">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Services -->
+      <div>
+        <h4 class="text-xs uppercase font-extrabold tracking-widest text-gold mb-6">Services</h4>
+        <ul class="space-y-3 text-xs text-gray-400 font-sans">
+          <li><a href="service-details.html?service=sole-replacement" class="hover:text-gold transition">Sole Replacement</a></li>
+          <li><a href="service-details.html?service=heel-repair" class="hover:text-gold transition">Heel Repair</a></li>
+          <li><a href="service-details.html?service=leather-restoration" class="hover:text-gold transition">Leather Restoration</a></li>
+          <li><a href="service-details.html?service=sneaker-restoration" class="hover:text-gold transition">Sneaker Restoration</a></li>
+          <li><a href="services.html" class="hover:text-gold transition">Shoe Cleaning</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 5: Support -->
+      <div>
+        <h4 class="text-xs uppercase font-extrabold tracking-widest text-gold mb-6">Support</h4>
+        <ul class="space-y-3 text-xs text-gray-400 font-sans">
+          <li><a href="booking.html" class="hover:text-gold transition">Booking</a></li>
+          <li><a href="about.html" class="hover:text-gold transition">FAQs</a></li>
+          <li><a href="coming-soon.html" class="hover:text-gold transition">Privacy</a></li>
+          <li><a href="coming-soon.html" class="hover:text-gold transition">Terms</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 6: Contact -->
+      <div>
+        <h4 class="text-xs uppercase font-extrabold tracking-widest text-gold mb-6">Contact</h4>
+        <div class="space-y-3 text-xs text-gray-400 leading-relaxed font-sans">
+          <p>42 Leather Lane, Craft District,<br>Mumbai 400001, India</p>
+          <p class="font-bold text-white">+91 98765 43210</p>
+          <p class="text-gold">hello@solecraft.in</p>
+          <p class="text-[10px]">Mon–Sat: 9:00 AM – 7:00 PM | Sun: 10:00 AM – 4:00 PM</p>
+          <a href="contact.html" class="text-gold font-bold hover:underline block pt-1">Get Directions &rarr;</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom copyright -->
+    <div class="mx-auto px-6 lg:px-12 border-t border-gray-900 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4 w-full max-w-none">
+      <div>&copy; 2026 Sole Craft. All Rights Reserved.</div>
+      <div class="flex gap-4 font-sans text-[11px]">
+        <a href="coming-soon.html" class="hover:text-gold transition">Terms of Service</a>
+        <span class="text-gray-800">|</span>
+        <a href="coming-soon.html" class="hover:text-gold transition">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/main.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Security Check: is user logged in?
+      const loggedUser = getLoggedInUser();
+      if (!loggedUser) {
+        window.location.href = 'login.html';
+        return;
+      }
+
+      // Display name greeting
+      document.getElementById('user-greeting').innerText = `Hello, ${loggedUser.name}`;
+      
+      // Load tables and forms
+      loadOverviewData(loggedUser.email);
+      loadBookingsTable(loggedUser.email);
+      loadSavedServices();
+      loadProfileFields(loggedUser);
+
+      // Handle query string tab parameter (?tab=bookings)
+      const urlParams = new URLSearchParams(window.location.search);
+      const activeTab = urlParams.get('tab');
+      if (activeTab) {
+        switchTab(activeTab);
+      }
+    });
+
+    function switchTab(tab) {
+      // Toggle button active status
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => {
+        btn.className = "tab-btn w-full text-left px-4 py-3 rounded-lg text-xs font-bold uppercase tracking-wider transition hover:bg-gold/10 hover:text-gold text-text-primary";
+      });
+      document.getElementById(`tab-btn-${tab}`).className = "tab-btn w-full text-left px-4 py-3 rounded-lg text-xs font-bold uppercase tracking-wider transition bg-gold text-black";
+
+      // Hide all panels
+      const panels = document.querySelectorAll('.tab-sec');
+      panels.forEach(p => p.classList.add('hidden'));
+      document.getElementById(`tab-sec-${tab}`).classList.remove('hidden');
+    }
+
+    // Load recent overview bookings
+    function loadOverviewData(email) {
+      const bookings = JSON.parse(localStorage.getItem('sc_bookings')) || [];
+      const userBookings = bookings.filter(b => b.email === email);
+      
+      const favs = JSON.parse(localStorage.getItem('sc_favorites')) || [];
+      
+      document.getElementById('stat-active-count').innerText = userBookings.filter(b => b.status !== 'Completed').length;
+      document.getElementById('stat-saved-count').innerText = favs.length;
+
+      const tbody = document.getElementById('overview-bookings-tbody');
+      tbody.innerHTML = '';
+      
+      if (userBookings.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" class="text-center py-4 text-gray-500">No bookings found.</td></tr>`;
+        return;
+      }
+
+      userBookings.slice(0, 3).forEach(b => {
+        const statusColor = b.status === 'Completed' ? 'text-green-500' : b.status === 'Confirmed' ? 'text-blue-500' : 'text-yellow-500';
+        tbody.innerHTML += `
+          <tr class="border-b border-gray-200 dark:border-gray-800">
+            <td class="py-2.5 font-mono text-xs">${b.id}</td>
+            <td class="py-2.5 font-semibold">${b.service}</td>
+            <td class="py-2.5">${b.date}</td>
+            <td class="py-2.5 font-bold ${statusColor}">${b.status}</td>
+            <td class="py-2.5 font-semibold">₹${b.price}</td>
+          </tr>
+        `;
+      });
+    }
+
+    // Load bookings main table
+    function loadBookingsTable(email) {
+      const tbody = document.getElementById('bookings-tbody');
+      if (!tbody) return;
+
+      const bookings = JSON.parse(localStorage.getItem('sc_bookings')) || [];
+      const userBookings = bookings.filter(b => b.email === email);
+
+      tbody.innerHTML = '';
+      if(userBookings.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-gray-500">You have no repair records.</td></tr>`;
+        return;
+      }
+
+      userBookings.forEach(b => {
+        const statusColor = b.status === 'Completed' ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' 
+                          : b.status === 'Confirmed' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400'
+                          : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400';
+        tbody.innerHTML += `
+          <tr class="border-b border-gray-200 dark:border-gray-800">
+            <td class="py-3 font-mono text-[10px]">${b.id}</td>
+            <td class="py-3 font-medium">${b.service}</td>
+            <td class="py-3">${b.shoeType}</td>
+            <td class="py-3">${b.date}</td>
+            <td class="py-3"><span class="px-2 py-0.5 rounded-full font-bold text-[10px] ${statusColor}">${b.status}</span></td>
+            <td class="py-3 font-semibold">₹${b.price}</td>
+            <td class="py-3"><button onclick="viewBookingDetails('${b.id}')" class="text-gold hover:underline"><i class="bi bi-eye"></i> Details</button></td>
+          </tr>
+        `;
+      });
+    }
+
+    // Load favorited services
+    function loadSavedServices() {
+      const favGrid = document.getElementById('favs-grid');
+      if(!favGrid) return;
+
+      const favIds = JSON.parse(localStorage.getItem('sc_favorites')) || [];
+      const services = JSON.parse(localStorage.getItem('sc_services')) || [];
+      const userFavs = services.filter(s => favIds.includes(s.id));
+
+      favGrid.innerHTML = '';
+      if(userFavs.length === 0) {
+        favGrid.innerHTML = `<div class="col-span-full text-center py-6 text-gray-500 text-xs">No saved services found. Heart items on the Services page.</div>`;
+        return;
+      }
+
+      userFavs.forEach(s => {
+        favGrid.innerHTML += `
+          <div class="glass-panel p-5 rounded-xl flex justify-between items-center border border-gold/10">
+            <div>
+              <h4 class="font-serif font-bold text-lg text-text-primary">${s.name}</h4>
+              <span class="text-xs text-gold font-semibold block mt-1">Starting: ₹${s.price}</span>
+            </div>
+            <div class="flex gap-2">
+              <a href="service-details.html?service=${s.id}" class="text-xs bg-gold hover:bg-gold-hover text-black px-4 py-2 rounded-full font-bold">Details</a>
+              <button onclick="removeFavoriteService('${s.id}')" class="text-red-500 hover:text-red-700 p-2"><i class="bi bi-trash"></i></button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    window.removeFavoriteService = function(id) {
+      let favs = JSON.parse(localStorage.getItem('sc_favorites')) || [];
+      favs = favs.filter(x => x !== id);
+      localStorage.setItem('sc_favorites', JSON.stringify(favs));
+      showToast('Removed from saved list.', 'info');
+      loadSavedServices();
+      const loggedUser = getLoggedInUser();
+      loadOverviewData(loggedUser.email);
+    };
+
+    // Load profile
+    function loadProfileFields(user) {
+      document.getElementById('prof-name').value = user.name;
+      document.getElementById('prof-email').value = user.email;
+      document.getElementById('prof-phone').value = user.phone;
+    }
+
+    // Submit profile updates
+    const profForm = document.getElementById('profile-form');
+    if (profForm) {
+      profForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('prof-email').value;
+        const name = document.getElementById('prof-name').value.trim();
+        const phone = document.getElementById('prof-phone').value.trim();
+
+        let users = JSON.parse(localStorage.getItem('sc_users')) || [];
+        const idx = users.findIndex(u => u.email === email);
+        if (idx !== -1) {
+          users[idx].name = name;
+          users[idx].phone = phone;
+          localStorage.setItem('sc_users', JSON.stringify(users));
+          
+          document.getElementById('user-greeting').innerText = `Hello, ${name}`;
+          showToast('Profile updated successfully!', 'success');
+        }
+      });
+    }
+
+    // View Modal Detail helper
+    window.viewBookingDetails = function(id) {
+      const bookings = JSON.parse(localStorage.getItem('sc_bookings')) || [];
+      const b = bookings.find(x => x.id === id);
+      if(!b) return;
+
+      const modal = document.getElementById('booking-detail-modal');
+      const container = document.getElementById('modal-ticket-details');
+
+      container.innerHTML = `
+        <div class="flex justify-between border-b border-gray-800 pb-2 mb-2">
+          <span>Ticket ID:</span> <strong class="text-text-primary">${b.id}</strong>
+        </div>
+        <div class="flex justify-between border-b border-gray-800 pb-2 mb-2">
+          <span>Service:</span> <strong class="text-text-primary">${b.service}</strong>
+        </div>
+        <div class="flex justify-between border-b border-gray-800 pb-2 mb-2">
+          <span>Shoe Structure:</span> <strong class="text-text-primary">${b.shoeType}</strong>
+        </div>
+        <div class="flex justify-between border-b border-gray-800 pb-2 mb-2">
+          <span>Date & Time:</span> <strong class="text-text-primary">${b.date} at ${b.time}</strong>
+        </div>
+        <div class="flex justify-between border-b border-gray-800 pb-2 mb-2">
+          <span>Price:</span> <strong class="text-gold font-bold">₹${b.price}</strong>
+        </div>
+        <div class="flex justify-between border-b border-gray-800 pb-2 mb-2">
+          <span>Status:</span> <strong class="text-gold font-bold uppercase">${b.status}</strong>
+        </div>
+        <div class="border-b border-gray-800 pb-2 mb-2">
+          <span class="block mb-1">Address:</span> <strong class="text-text-primary">${b.address || 'N/A'}</strong>
+        </div>
+        <div>
+          <span class="block mb-1">Notes:</span> <span class="italic text-gray-500">${b.notes || 'None'}</span>
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    };
+
+    window.closeDetailModal = function() {
+      const modal = document.getElementById('booking-detail-modal');
+      modal.classList.remove('flex');
+      modal.classList.add('hidden');
+    };
+
+    // Logout
+    window.handleLogout = function() {
+      localStorage.removeItem('sc_logged_in_user');
+      showToast('Logged out successfully.', 'info');
+      setTimeout(() => {
+        window.location.href = 'login.html';
+      }, 1000);
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics Reports — Sole Craft Admin</title>
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  
+  <!-- Tailwind CSS CDN + Custom Configuration -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            gold: '#D4AF37',
+            'gold-hover': '#AA882C',
+            cognac: '#8C6239',
+            tan: '#B5835A',
+            'text-primary': 'var(--text-primary)',
+            'text-secondary': 'var(--text-secondary)',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#FAF7F0] text-[#1C1C1C] dark:bg-[#0F0F0F] dark:text-[#F3ECE0] transition-colors duration-500 min-h-screen flex flex-col lg:flex-row">
+
+  <!-- Admin Sidebar -->
+  <aside class="w-full lg:w-64 bg-[#171717] text-[#FAF7F0] border-r border-gray-800 flex flex-col justify-between p-6">
+    <div class="space-y-8">
+      <a href="../index.html" class="flex items-center gap-2">
+        <i class="bi bi-gem text-gold text-xl"></i>
+        <span class="font-serif text-xl font-bold tracking-wider text-gold-gradient">SOLE CRAFT</span>
+      </a>
+
+      <nav class="space-y-2 text-xs font-bold uppercase tracking-wider">
+        <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 text-gray-400 hover:text-white transition">
+          <i class="bi bi-speedometer2 text-lg"></i> Dashboard
+        </a>
+        <a href="bookings.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 text-gray-400 hover:text-white transition">
+          <i class="bi bi-ticket-detailed text-lg"></i> Bookings
+        </a>
+        <a href="users.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 text-gray-400 hover:text-white transition">
+          <i class="bi bi-people text-lg"></i> Customers
+        </a>
+        <a href="services.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 text-gray-400 hover:text-white transition">
+          <i class="bi bi-gear text-lg"></i> Services
+        </a>
+        <a href="messages.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 text-gray-400 hover:text-white transition">
+          <i class="bi bi-chat-left-text text-lg"></i> Messages
+        </a>
+        <a href="analytics.html" class="flex items-center gap-3 px-4 py-3 rounded-lg bg-gold text-black transition">
+          <i class="bi bi-graph-up-arrow text-lg"></i> Analytics
+        </a>
+      </nav>
+    </div>
+
+    <div class="border-t border-gray-800 pt-4 mt-8 flex justify-between items-center text-xs text-gray-400">
+      <div>
+        <span class="block text-[10px] text-gray-500 uppercase">Logged as</span>
+        <span class="font-semibold text-gold">Admin Atelier</span>
+      </div>
+      <button onclick="handleAdminLogout()" class="text-red-500 hover:text-red-400 text-lg" title="Log out"><i class="bi bi-box-arrow-right"></i></button>
+    </div>
+  </aside>
+
+  <!-- Mobile Header -->
+  <header class="lg:hidden bg-[#171717] text-[#FAF7F0] p-4 flex justify-between items-center border-b border-gray-800">
+    <a href="../index.html" class="flex items-center gap-2">
+      <i class="bi bi-gem text-gold text-lg"></i>
+      <span class="font-serif text-lg font-bold text-gold-gradient">SOLE CRAFT</span>
+    </a>
+    <button onclick="handleAdminLogout()" class="text-red-500"><i class="bi bi-box-arrow-right"></i></button>
+  </header>
+
+  <!-- Main section -->
+  <main class="flex-grow p-6 lg:p-10 space-y-8 overflow-y-auto">
+    
+    <div>
+      <h1 class="text-3xl font-serif font-bold text-text-primary">Analytics Reports</h1>
+      <p class="text-xs text-text-secondary">Historical charts detailing monthly resolutions and revenue metrics</p>
+    </div>
+
+    <!-- Charts Container -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div class="glass-panel p-6 rounded-2xl">
+        <h3 class="font-serif text-lg font-bold mb-4">Bookings Volume</h3>
+        <canvas id="chart-bookings-monthly" class="w-full h-60" width="400" height="240"></canvas>
+      </div>
+
+      <div class="glass-panel p-6 rounded-2xl">
+        <h3 class="font-serif text-lg font-bold mb-4">Monthly Revenue Trend</h3>
+        <canvas id="chart-revenue-popular" class="w-full h-60" width="400" height="240"></canvas>
+      </div>
+    </div>
+
+    <!-- Breakdown Details List -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Box 1 -->
+      <div class="glass-panel p-6 rounded-xl border border-gold/10">
+        <h4 class="font-serif font-bold text-lg text-text-primary mb-2">Service Popularity</h4>
+        <ul class="space-y-2 text-xs text-text-secondary">
+          <li class="flex justify-between border-b border-gray-800 pb-1.5"><span>Sole Replacement</span> <strong class="text-gold">45%</strong></li>
+          <li class="flex justify-between border-b border-gray-800 pb-1.5"><span>Leather Restoration</span> <strong class="text-gold">25%</strong></li>
+          <li class="flex justify-between border-b border-gray-800 pb-1.5"><span>Sneaker Clean</span> <strong class="text-gold">20%</strong></li>
+          <li class="flex justify-between"><span>Others</span> <strong class="text-gold">10%</strong></li>
+        </ul>
+      </div>
+
+      <!-- Box 2 -->
+      <div class="glass-panel p-6 rounded-xl border border-gold/10">
+        <h4 class="font-serif font-bold text-lg text-text-primary mb-2">Customer Demographics</h4>
+        <ul class="space-y-2 text-xs text-text-secondary">
+          <li class="flex justify-between border-b border-gray-800 pb-1.5"><span>Returning Customers</span> <strong class="text-gold">64%</strong></li>
+          <li class="flex justify-between border-b border-gray-800 pb-1.5"><span>New Customers</span> <strong class="text-gold">36%</strong></li>
+          <li class="flex justify-between border-b border-gray-800 pb-1.5"><span>Average Rating</span> <strong class="text-gold">4.9 / 5</strong></li>
+          <li class="flex justify-between"><span>Active Favorites list</span> <strong class="text-gold">120+</strong></li>
+        </ul>
+      </div>
+
+      <!-- Box 3 -->
+      <div class="glass-panel p-6 rounded-xl border border-gold/10">
+        <h4 class="font-serif font-bold text-lg text-text-primary mb-2">Operational Timelines</h4>
+        <ul class="space-y-2 text-xs text-text-secondary">
+          <li class="flex justify-between border-b border-gray-800 pb-1.5"><span>Avg Repair Turnaround</span> <strong class="text-gold">2.4 Days</strong></li>
+          <li class="flex justify-between border-b border-gray-800 pb-1.5"><span>Pickup Courier SLA</span> <strong class="text-gold">98.2%</strong></li>
+          <li class="flex justify-between border-b border-gray-800 pb-1.5"><span>Stitching SLA</span> <strong class="text-gold">100%</strong></li>
+          <li class="flex justify-between"><span>Refund inquiries</span> <strong class="text-gold">0.05%</strong></li>
+        </ul>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Scripts -->
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/admin.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Security Check: is admin logged in?
+      const loggedUser = localStorage.getItem('sc_logged_in_user');
+      if (loggedUser !== 'admin@example.com') {
+        window.location.href = '../login.html';
+        return;
+      }
+      
+      // Force initial statistics charts drawing
+      const bookings = JSON.parse(localStorage.getItem('sc_bookings')) || [];
+      drawAdminCharts(bookings);
+    });
+
+    window.handleAdminLogout = function() {
+      localStorage.removeItem('sc_logged_in_user');
+      showToast('Logged out of Admin Portal.', 'info');
+      setTimeout(() => {
+        window.location.href = '../login.html';
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

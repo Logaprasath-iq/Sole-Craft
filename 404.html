@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found — Sole Craft</title>
+  <meta name="description" content="Oops! This step went missing. The page you are looking for does not exist. Back to Sole Craft Home.">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  
+  <!-- Tailwind CSS CDN + Custom Configuration -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            gold: 'var(--color-gold)',
+            'gold-hover': 'var(--color-gold-hover)',
+            cognac: 'var(--color-cognac)',
+            tan: 'var(--color-tan)',
+            'text-primary': 'var(--text-primary)',
+            'text-secondary': 'var(--text-secondary)',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#FAF7F0] text-[#1C1C1C] dark:bg-[#0F0F0F] dark:text-[#F3ECE0] transition-colors duration-500 min-h-screen flex items-center justify-center relative text-center">
+
+  <!-- Loader Overlay -->
+  <div id="page-loader">
+    <div class="loader-shoe mb-4"></div>
+    <div class="text-gold font-serif text-lg tracking-widest animate-pulse">SOLE CRAFT</div>
+  </div>
+
+  <div class="container mx-auto px-6 max-w-lg relative z-10 page-transition">
+    
+    <!-- 404 block -->
+    <div class="glass-panel p-10 rounded-3xl border border-gold/15 shadow-2xl space-y-6">
+      
+      <!-- Rotating Outline -->
+      <div class="flex justify-center mb-6">
+        <div class="w-24 h-24 rounded-full border-4 border-dashed border-gold flex items-center justify-center animate-spin" style="animation-duration: 8s;">
+          <i class="bi bi-exclamation-triangle text-gold text-4xl"></i>
+        </div>
+      </div>
+
+      <h1 class="text-4xl lg:text-5xl font-serif font-bold text-gold-gradient leading-tight">
+        Oops! This Step<br>Went Missing.
+      </h1>
+      
+      <p class="text-text-secondary text-sm leading-relaxed max-w-sm mx-auto">
+        We couldn't find the page you were looking for. It seems like the sole slipped or we took a wrong path. Let's get you back on track.
+      </p>
+
+      <div class="flex flex-wrap gap-4 justify-center pt-4">
+        <a href="index.html" class="bg-gold hover:bg-gold-hover text-black px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition shadow-md">
+          Back Home <i class="bi bi-house ml-1"></i>
+        </a>
+        <a href="services.html" class="border border-gold text-gold hover:bg-gold hover:text-black px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition">
+          Explore Services <i class="bi bi-search ml-1"></i>
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
