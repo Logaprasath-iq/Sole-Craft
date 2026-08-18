@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" class="dark">
 <head>
+  <!-- Theme Initializer Script -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('soleCraftTheme') || 'dark';
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manage Customers — Sole Craft Admin</title>
@@ -72,6 +84,9 @@
 
   <!-- Mobile Header -->
   <header class="lg:hidden bg-[#171717] text-[#FAF7F0] p-4 flex justify-between items-center border-b border-gray-800">
+    <button id="admin-sidebar-toggle" class="text-white hover:text-gold transition mr-3 flex items-center justify-center p-1 focus:outline-none">
+      <i class="bi bi-list text-2xl"></i>
+    </button>
     <a href="../index.html" class="flex items-center gap-2">
       <i class="bi bi-gem text-gold text-lg"></i>
       <span class="font-serif text-lg font-bold text-gold-gradient">SOLE CRAFT</span>

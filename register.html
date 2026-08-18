@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" class="dark">
 <head>
+  <!-- Theme Initializer Script -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('soleCraftTheme') || 'dark';
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register — Sole Craft</title>
@@ -33,11 +45,7 @@
 </head>
 <body class="bg-[#FAF7F0] text-[#1C1C1C] dark:bg-[#0F0F0F] dark:text-[#F3ECE0] transition-colors duration-500 min-h-screen flex flex-col justify-between relative">
 
-  <!-- Loader Overlay -->
-  <div id="page-loader">
-    <div class="loader-shoe mb-4"></div>
-    <div class="text-gold font-serif text-lg tracking-widest animate-pulse">SOLE CRAFT</div>
-  </div>
+  
 
   <!-- Premium Sticky Header Navbar (Minimal for Login/Signup) -->
   <header class="fixed top-0 left-0 w-full z-50 py-3 lg:py-5 transition-all duration-300 bg-transparent">
@@ -69,7 +77,7 @@
       <div class="glass-panel p-8 rounded-3xl border border-gold/15 shadow-2xl">
         <div class="text-center mb-8">
           <a href="index.html" class="inline-flex items-center gap-2 mb-3">
-            <i class="bi bi-gem text-gold text-2xl"></i>
+            <img src="assets/images/logo.png" alt="Sole Craft Logo" class="w-8 h-8 rounded-full border border-gold/30 object-cover">
             <span class="font-serif text-2xl font-bold tracking-wider text-gold-gradient">SOLE CRAFT</span>
           </a>
           <h2 class="text-2xl font-serif font-bold text-text-primary">Create Account</h2>

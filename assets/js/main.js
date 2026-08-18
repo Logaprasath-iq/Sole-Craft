@@ -73,13 +73,7 @@ initDatabase();
 
 // Page Loader Control
 window.addEventListener('load', () => {
-  const loader = document.getElementById('page-loader');
-  if (loader) {
-    loader.style.opacity = '0';
-    setTimeout(() => {
-      loader.style.display = 'none';
-    }, 500);
-  }
+  
   
   // Page entry animation triggers
   const fadeElements = document.querySelectorAll('.page-transition');
@@ -114,70 +108,148 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Mobile Menu Toggle
-  const menuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  if (menuBtn && mobileMenu) {
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-      mobileMenu.classList.toggle('flex');
-    });
-  }
-
   // Theme Management
-  const themeToggle = document.getElementById('theme-toggle');
-  const storedTheme = localStorage.getItem('sc_theme') || 'dark'; // Defaulting to premium dark theme
-  
+  const storedTheme = localStorage.getItem('soleCraftTheme') || 'dark';
   if (storedTheme === 'dark') {
     document.documentElement.classList.add('dark');
   } else {
     document.documentElement.classList.remove('dark');
   }
-  updateThemeIcon();
+
+  const themeToggle = document.getElementById('theme-toggle');
+  const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+
+  updateThemeIcons();
 
   if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      document.documentElement.classList.toggle('dark');
-      const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-      localStorage.setItem('sc_theme', currentTheme);
-      updateThemeIcon();
+    themeToggle.addEventListener('click', toggleGlobalTheme);
+  }
+  if (mobileThemeToggle) {
+    mobileThemeToggle.addEventListener('click', toggleGlobalTheme);
+  }
+
+  function toggleGlobalTheme(e) {
+    if (e) e.preventDefault();
+    document.documentElement.classList.toggle('dark');
+    const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    localStorage.setItem('soleCraftTheme', currentTheme);
+    updateThemeIcons();
+  }
+
+  function updateThemeIcons() {
+    const isDark = document.documentElement.classList.contains('dark');
+    
+    if (themeToggle) {
+      themeToggle.innerHTML = isDark 
+        ? '<i class="bi bi-sun-fill text-xl text-[#E6C387]"></i>' 
+        : '<i class="bi bi-moon-fill text-xl text-[#8C6239]"></i>';
+    }
+    
+    if (mobileThemeToggle) {
+      mobileThemeToggle.innerHTML = isDark
+        ? '<i class="bi bi-sun-fill text-lg text-[#E6C387]"></i>'
+        : '<i class="bi bi-moon-fill text-lg text-[#8C6239]"></i>';
+    }
+  }
+
+  // Mobile Drawer Toggle Behavior
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileDrawer = document.getElementById('mobile-drawer');
+  const mobileDrawerOverlay = document.getElementById('mobile-drawer-overlay');
+  const mobileDrawerClose = document.getElementById('mobile-drawer-close');
+
+  if (mobileMenuBtn && mobileDrawer && mobileDrawerOverlay) {
+    mobileMenuBtn.addEventListener('click', openDrawer);
+    if (mobileDrawerClose) mobileDrawerClose.addEventListener('click', closeDrawer);
+    mobileDrawerOverlay.addEventListener('click', closeDrawer);
+
+    // Close drawer on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeDrawer();
+    });
+
+    // Close on vertical link click
+    const drawerLinks = mobileDrawer.querySelectorAll('nav a');
+    drawerLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        // If it's a regular page link, close drawer
+        if (!link.classList.contains('mobile-dropdown-toggle') && !link.closest('.mobile-dropdown-toggle')) {
+          closeDrawer();
+        }
+      });
+    });
+
+    // Dropdown accordion toggles inside mobile menu drawer
+    const dropdownToggles = mobileDrawer.querySelectorAll('.mobile-dropdown-toggle');
+    dropdownToggles.forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const menu = toggle.nextElementSibling;
+        const icon = toggle.querySelector('i');
+        if (menu) {
+          menu.classList.toggle('hidden');
+          if (icon) {
+            icon.classList.toggle('rotate-180');
+          }
+        }
+      });
     });
   }
 
-  function updateThemeIcon() {
-    if (!themeToggle) return;
-    const isDark = document.documentElement.classList.contains('dark');
-    themeToggle.innerHTML = isDark 
-      ? '<i class="bi bi-sun-fill text-xl text-[#E6C387]"></i>' 
-      : '<i class="bi bi-moon-fill text-xl text-[#8C6239]"></i>';
+  function openDrawer() {
+    if (!mobileDrawer || !mobileDrawerOverlay) return;
+    mobileDrawerOverlay.classList.remove('hidden');
+    mobileDrawerOverlay.offsetWidth; // Reflow
+    mobileDrawerOverlay.classList.add('opacity-100');
+    mobileDrawer.classList.remove('translate-x-full');
+    document.body.classList.add('overflow-hidden'); // Lock body scroll
+  }
+
+  function closeDrawer() {
+    if (!mobileDrawer || !mobileDrawerOverlay) return;
+    mobileDrawerOverlay.classList.remove('opacity-100');
+    mobileDrawer.classList.add('translate-x-full');
+    document.body.classList.remove('overflow-hidden'); // Restore body scroll
+    setTimeout(() => {
+      mobileDrawerOverlay.classList.add('hidden');
+    }, 300);
   }
 
   // RTL/Language Management
   const langToggle = document.getElementById('lang-toggle');
+  const mobileLangToggle = document.getElementById('mobile-lang-toggle');
   const storedLang = localStorage.getItem('sc_lang') || 'en';
-  
+
   applyLanguage(storedLang);
 
   if (langToggle) {
-    langToggle.addEventListener('click', (e) => {
-      e.preventDefault();
-      const nextLang = document.documentElement.getAttribute('dir') === 'rtl' ? 'en' : 'ar';
-      localStorage.setItem('sc_lang', nextLang);
-      applyLanguage(nextLang);
-    });
+    langToggle.addEventListener('click', toggleLanguage);
+  }
+  if (mobileLangToggle) {
+    mobileLangToggle.addEventListener('click', toggleLanguage);
+  }
+
+  function toggleLanguage(e) {
+    e.preventDefault();
+    const nextLang = document.documentElement.getAttribute('dir') === 'rtl' ? 'en' : 'ar';
+    localStorage.setItem('sc_lang', nextLang);
+    applyLanguage(nextLang);
   }
 
   function applyLanguage(lang) {
     const langText = document.getElementById('lang-text');
+    const mobileLangText = document.getElementById('mobile-lang-text');
     if (lang === 'ar') {
       document.documentElement.setAttribute('dir', 'rtl');
       document.documentElement.setAttribute('lang', 'ar');
       if (langText) langText.innerText = 'LTR';
+      if (mobileLangText) mobileLangText.innerText = 'LTR';
       translatePageToRtl();
     } else {
       document.documentElement.setAttribute('dir', 'ltr');
       document.documentElement.setAttribute('lang', 'en');
       if (langText) langText.innerText = 'RTL';
+      if (mobileLangText) mobileLangText.innerText = 'RTL';
       translatePageToLtr();
     }
   }

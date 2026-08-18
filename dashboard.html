@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" class="dark">
 <head>
+  <!-- Theme Initializer Script -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('soleCraftTheme') || 'dark';
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Customer Dashboard — Sole Craft</title>
@@ -33,11 +45,7 @@
 </head>
 <body class="bg-[#FAF7F0] text-[#1C1C1C] dark:bg-[#0F0F0F] dark:text-[#F3ECE0] transition-colors duration-500 min-h-screen flex flex-col justify-between">
 
-  <!-- Loader Overlay -->
-  <div id="page-loader">
-    <div class="loader-shoe mb-4"></div>
-    <div class="text-gold font-serif text-lg tracking-widest animate-pulse">SOLE CRAFT</div>
-  </div>
+  
 
   <!-- Header Navbar -->
   <!-- Premium Sticky Header Navbar -->
@@ -110,26 +118,80 @@
       </button>
     </div>
 
-    <!-- Mobile Drawer menu -->
-    <div id="mobile-menu" class="hidden lg:hidden flex-col bg-[#FAF7F0] dark:bg-[#0F0F0F] border-b border-[#8C6239]/10 py-4 px-6 gap-4 text-center text-sm font-semibold uppercase tracking-wider">
-      <a href="index.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">Home 1 (General)</a>
-      <a href="home-2.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">Home 2 (Luxury)</a>
-      <a href="about.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">About</a>
-      <a href="services.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">Services</a>
-      <a href="gallery.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">Gallery</a>
-      <a href="pricing.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">Pricing</a>
-      <a href="blog.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">Blog</a>
-      <a href="404.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">404 Error</a>
-      <a href="coming-soon.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">Coming Soon</a>
-      <a href="contact.html" class="py-2 hover:text-gold transition border-b border-gray-100 dark:border-gray-800">Contact</a>
-      <div class="flex justify-center gap-6 py-2 border-b border-gray-100 dark:border-gray-800">
-        <button onclick="document.getElementById('search-btn').click()"><i class="bi bi-search text-lg"></i></button>
-        <button id="mobile-theme-btn" onclick="document.getElementById('theme-toggle').click()"><i class="bi bi-moon"></i></button>
-        <button id="mobile-lang-btn" onclick="document.getElementById('lang-toggle').click()">AR</button>
+    
+    <!-- Mobile Drawer Overlay -->
+    <div id="mobile-drawer-overlay" class="fixed inset-0 bg-black/60 z-[9998] hidden opacity-0 transition-opacity duration-300"></div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-drawer" class="fixed top-0 right-0 h-full w-[85vw] max-w-[380px] bg-[#0F0F0F] text-[#F3ECE0] z-[9999] transform translate-x-full transition-transform duration-300 overflow-y-auto flex flex-col justify-between border-l border-gold/15 shadow-2xl">
+      <!-- Drawer Header -->
+      <div class="p-6 flex items-center justify-between border-b border-gold/15">
+        <a href="index.html" class="flex items-center gap-2">
+          <img src="assets/images/logo.png" alt="Sole Craft Logo" class="w-8 h-8 rounded-full border border-gold/30 object-cover">
+          <span class="font-serif text-xl font-bold tracking-wider text-gold-gradient">SOLE CRAFT</span>
+        </a>
+        <button id="mobile-drawer-close" class="text-[#F3ECE0] hover:text-gold transition p-2">
+          <i class="bi bi-x-lg text-xl"></i>
+        </button>
       </div>
-      <a href="login.html" class="py-2 hover:text-gold transition">Login</a>
-      <a href="register.html" class="py-2 hover:text-gold transition">Sign Up</a>
+
+      <!-- Theme & Orientation Toggles -->
+      <div class="px-6 py-4 flex gap-4 border-b border-gold/10 text-xs uppercase tracking-wider font-bold">
+        <!-- Theme Switch -->
+        <button id="mobile-theme-toggle" class="flex-1 py-2.5 px-4 rounded-full border border-gold/20 hover:border-gold bg-[#171717] flex items-center justify-center gap-2 text-[#FAF7F0] transition" title="Toggle Theme">
+          <i class="bi bi-sun-fill text-gold"></i>
+        </button>
+        <!-- RTL Toggle -->
+        <button id="mobile-lang-toggle" class="flex-1 py-2.5 px-4 rounded-full border border-gold/20 hover:border-gold bg-[#171717] flex items-center justify-center gap-2 text-[#FAF7F0] transition">
+          <i class="bi bi-arrow-left-right text-gold"></i> <span id="mobile-lang-text">RTL</span>
+        </button>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="flex-1 px-6 py-6 space-y-2 text-sm uppercase tracking-widest font-bold">
+        <!-- Home Dropdown -->
+        <div class="space-y-2">
+          <button class="mobile-dropdown-toggle w-full text-left py-3 flex items-center justify-between hover:text-gold transition border-b border-gold/5">
+            <span>Home</span>
+            <i class="bi bi-chevron-down text-xs transition-transform duration-200"></i>
+          </button>
+          <div class="mobile-dropdown-menu hidden pl-4 space-y-2 text-xs normal-case tracking-normal">
+            <a href="index.html" class="block py-2 text-gray-400 hover:text-gold transition border-b border-gold/5">Home 1 (General)</a>
+            <a href="home-2.html" class="block py-2 text-gray-400 hover:text-gold transition border-b border-gold/5">Home 2 (Luxury)</a>
+          </div>
+        </div>
+
+        <a href="about.html" class="block py-3 hover:text-gold transition border-b border-gold/5">About</a>
+        <a href="services.html" class="block py-3 hover:text-gold transition border-b border-gold/5">Services</a>
+        <a href="gallery.html" class="block py-3 hover:text-gold transition border-b border-gold/5">Gallery</a>
+        <a href="pricing.html" class="block py-3 hover:text-gold transition border-b border-gold/5">Pricing</a>
+        <a href="blog.html" class="block py-3 hover:text-gold transition border-b border-gold/5">Blog</a>
+
+        <!-- Pages Dropdown -->
+        <div class="space-y-2">
+          <button class="mobile-dropdown-toggle w-full text-left py-3 flex items-center justify-between hover:text-gold transition border-b border-gold/5">
+            <span>Pages</span>
+            <i class="bi bi-chevron-down text-xs transition-transform duration-200"></i>
+          </button>
+          <div class="mobile-dropdown-menu hidden pl-4 space-y-2 text-xs normal-case tracking-normal">
+            <a href="404.html" class="block py-2 text-gray-400 hover:text-gold transition border-b border-gold/5">404 Error</a>
+            <a href="coming-soon.html" class="block py-2 text-gray-400 hover:text-gold transition border-b border-gold/5">Coming Soon</a>
+            <a href="maintenance.html" class="block py-2 text-gray-400 hover:text-gold transition border-b border-gold/5">Under Maintenance</a>
+          </div>
+        </div>
+
+        <a href="contact.html" class="block py-3 hover:text-gold transition border-b border-gold/5">Contact</a>
+        <a href="login.html" class="block py-3 hover:text-gold transition border-b border-gold/5">Login</a>
+      </nav>
+
+      <!-- Bottom Actions -->
+      <div class="p-6 border-t border-gold/15 bg-[#121212]">
+        <a href="register.html" class="block text-center bg-gold hover:bg-gold-hover text-black py-4 rounded-full text-xs font-bold uppercase tracking-widest transition shadow-lg">
+          Sign Up / Book Now
+        </a>
+      </div>
     </div>
+
   </header>
 
   <!-- Dashboard Body Grid -->

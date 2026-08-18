@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" class="dark">
 <head>
+  <!-- Theme Initializer Script -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('soleCraftTheme') || 'dark';
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Repair Booked! — Sole Craft</title>
@@ -33,11 +45,7 @@
 </head>
 <body class="bg-[#FAF7F0] text-[#1C1C1C] dark:bg-[#0F0F0F] dark:text-[#F3ECE0] transition-colors duration-500 min-h-screen flex items-center justify-center py-20 relative">
 
-  <!-- Loader Overlay -->
-  <div id="page-loader">
-    <div class="loader-shoe mb-4"></div>
-    <div class="text-gold font-serif text-lg tracking-widest animate-pulse">SOLE CRAFT</div>
-  </div>
+  
 
   <div class="container mx-auto px-6 max-w-lg relative z-10 page-transition">
     

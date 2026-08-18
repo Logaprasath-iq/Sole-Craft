@@ -443,3 +443,57 @@ function setupModals() {
   });
 }
 window.closeCustomModal = closeModal;
+
+
+// Admin Responsive Sidebar Toggling for Mobile Viewport
+document.addEventListener('DOMContentLoaded', () => {
+  const adminToggleBtn = document.getElementById('admin-sidebar-toggle');
+  const adminSidebar = document.querySelector('aside');
+  
+  if (adminSidebar) {
+    adminSidebar.id = 'admin-sidebar';
+    
+    // Create/inject dark overlay behind sidebar on mobile
+    let overlay = document.getElementById('admin-sidebar-overlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'admin-sidebar-overlay';
+      overlay.className = 'fixed inset-0 bg-black/50 z-40 hidden opacity-0 transition-opacity duration-300';
+      document.body.appendChild(overlay);
+    }
+    
+    if (adminToggleBtn) {
+      adminToggleBtn.addEventListener('click', () => {
+        adminSidebar.classList.add('open');
+        overlay.classList.remove('hidden');
+        overlay.offsetWidth; // Force Reflow
+        overlay.classList.add('opacity-100');
+        document.body.classList.add('overflow-hidden');
+      });
+    }
+    
+    overlay.addEventListener('click', () => {
+      adminSidebar.classList.remove('open');
+      overlay.classList.remove('opacity-100');
+      document.body.classList.remove('overflow-hidden');
+      setTimeout(() => {
+        overlay.classList.add('hidden');
+      }, 300);
+    });
+    
+    // Close sidebar on navigation links click
+    const adminLinks = adminSidebar.querySelectorAll('nav a');
+    adminLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth < 1024) {
+          adminSidebar.classList.remove('open');
+          overlay.classList.remove('opacity-100');
+          document.body.classList.remove('overflow-hidden');
+          setTimeout(() => {
+            overlay.classList.add('hidden');
+          }, 300);
+        }
+      });
+    });
+  }
+});

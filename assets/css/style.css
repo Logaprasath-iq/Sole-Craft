@@ -466,3 +466,48 @@ html.dark header.glass-panel {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
 }
 
+
+
+/* Mobile Drawer Overlay and Drawer Navigation Styles */
+#mobile-drawer-overlay {
+  pointer-events: auto;
+}
+
+#mobile-drawer {
+  box-shadow: -10px 0 35px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* Accordion animations */
+.mobile-dropdown-menu {
+  transition: max-height 0.3s ease-out;
+}
+
+/* Rotate dropdown arrows */
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+/* Admin Sidebar Responsive Layout */
+@media (max-width: 1023px) {
+  #admin-sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    height: 100vh !important;
+    width: 260px !important;
+    z-index: 50 !important;
+    transform: translateX(-100%) !important;
+    transition: transform 0.3s ease-in-out !important;
+    display: flex !important;
+  }
+  #admin-sidebar.open {
+    transform: translateX(0) !important;
+  }
+  
+  /* Tables horizontally scrollable container */
+  .table-responsive-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
