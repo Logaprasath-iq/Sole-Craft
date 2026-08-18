@@ -511,3 +511,60 @@ html.dark header.glass-panel {
     -webkit-overflow-scrolling: touch;
   }
 }
+
+
+/* Active Nav Highlight Override (Forces gold color for active pages) */
+header nav a.text-gold,
+header nav a.text-gold i,
+header nav button.text-gold,
+header nav button.text-gold i {
+  color: var(--color-gold) !important;
+}
+
+
+/* Light Mode transparent header overrides for pages with light backgrounds */
+html:not(.dark) body.service-details-page header:not(.glass-panel) nav a,
+html:not(.dark) body.service-details-page header:not(.glass-panel) nav button,
+html:not(.dark) body.service-details-page header:not(.glass-panel) button:not(.theme-circle-btn) i,
+html:not(.dark) body.service-details-page header:not(.glass-panel) #search-btn i,
+html:not(.dark) body.service-details-page header:not(.glass-panel) #lang-text,
+html:not(.dark) body.service-details-page header:not(.glass-panel) #lang-toggle i,
+
+html:not(.dark) body.auth-page header:not(.glass-panel) nav a,
+html:not(.dark) body.auth-page header:not(.glass-panel) nav button,
+html:not(.dark) body.auth-page header:not(.glass-panel) button:not(.theme-circle-btn) i,
+html:not(.dark) body.auth-page header:not(.glass-panel) #search-btn i,
+html:not(.dark) body.auth-page header:not(.glass-panel) #lang-text,
+html:not(.dark) body.auth-page header:not(.glass-panel) #lang-toggle i,
+
+html:not(.dark) body.dashboard-page header:not(.glass-panel) nav a,
+html:not(.dark) body.dashboard-page header:not(.glass-panel) nav button,
+html:not(.dark) body.dashboard-page header:not(.glass-panel) button:not(.theme-circle-btn) i,
+html:not(.dark) body.dashboard-page header:not(.glass-panel) #search-btn i,
+html:not(.dark) body.dashboard-page header:not(.glass-panel) #lang-text,
+html:not(.dark) body.dashboard-page header:not(.glass-panel) #lang-toggle i,
+
+html:not(.dark) body.booking-success-page header:not(.glass-panel) nav a,
+html:not(.dark) body.booking-success-page header:not(.glass-panel) nav button,
+html:not(.dark) body.booking-success-page header:not(.glass-panel) button:not(.theme-circle-btn) i,
+html:not(.dark) body.booking-success-page header:not(.glass-panel) #search-btn i,
+html:not(.dark) body.booking-success-page header:not(.glass-panel) #lang-text,
+html:not(.dark) body.booking-success-page header:not(.glass-panel) #lang-toggle i {
+  color: #1C1C1C !important;
+}
+
+html:not(.dark) body.service-details-page header:not(.glass-panel) .rtl-toggle-pill,
+html:not(.dark) body.auth-page header:not(.glass-panel) .rtl-toggle-pill,
+html:not(.dark) body.dashboard-page header:not(.glass-panel) .rtl-toggle-pill,
+html:not(.dark) body.booking-success-page header:not(.glass-panel) .rtl-toggle-pill {
+  border-color: rgba(28, 28, 28, 0.25) !important;
+  background-color: rgba(28, 28, 28, 0.06) !important;
+  color: #1C1C1C !important;
+}
+
+html:not(.dark) body.service-details-page header:not(.glass-panel) .rtl-toggle-pill span,
+html:not(.dark) body.auth-page header:not(.glass-panel) .rtl-toggle-pill span,
+html:not(.dark) body.dashboard-page header:not(.glass-panel) .rtl-toggle-pill span,
+html:not(.dark) body.booking-success-page header:not(.glass-panel) .rtl-toggle-pill span {
+  color: #1C1C1C !important;
+}

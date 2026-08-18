@@ -98,13 +98,30 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Highlight current page
-  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  let currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  if (currentPath.includes('service-details')) {
+    currentPath = 'services.html';
+  } else if (currentPath.includes('blog-details')) {
+    currentPath = 'blog.html';
+  } else if (currentPath.includes('booking-success')) {
+    currentPath = 'booking.html';
+  }
+
   const navLinks = document.querySelectorAll('nav a');
   navLinks.forEach(link => {
     const linkPath = link.getAttribute('href');
     if (linkPath === currentPath) {
       link.classList.add('text-gold', 'font-semibold');
       link.classList.remove('text-text-primary');
+      
+      // Highlight parent dropdown button if link is nested
+      const parentDropdown = link.closest('.nav-item-has-dropdown');
+      if (parentDropdown) {
+        const toggleBtn = parentDropdown.querySelector('button');
+        if (toggleBtn) {
+          toggleBtn.classList.add('text-gold', 'font-semibold');
+        }
+      }
     }
   });
 
