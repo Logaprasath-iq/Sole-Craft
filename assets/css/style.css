@@ -41,13 +41,17 @@
   --glass-border: rgba(181, 131, 90, 0.15);
 }
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 /* Global Styles */
 body {
   font-family: var(--font-sans);
   background-color: var(--bg-primary);
   color: var(--text-primary);
   transition: background-color 0.5s ease, color 0.5s ease;
-  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6, .font-serif {
@@ -275,7 +279,7 @@ h1, h2, h3, h4, h5, h6, .font-serif {
   text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 1px;
-  color: var(--text-primary);
+  color: var(--text-primary) !important;
   transition: var(--transition-fast);
 }
 
@@ -292,12 +296,15 @@ h1, h2, h3, h4, h5, h6, .font-serif {
 
 /* RTL Lang Toggle Pill */
 .rtl-toggle-pill {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
+  height: 40px;
+  box-sizing: border-box;
   gap: 6px;
   border: 1px solid var(--color-gold);
   border-radius: 9999px;
-  padding: 6px 14px;
+  padding: 0 16px;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 1px;
@@ -383,15 +390,17 @@ h1, h2, h3, h4, h5, h6, .font-serif {
 .theme-circle-btn {
   width: 40px;
   height: 40px;
+  min-width: 40px;
+  min-height: 40px;
   background: var(--color-gold);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: var(--transition-smooth);
+  box-sizing: border-box;
 }
 .theme-circle-btn:hover {
-  transform: scale(1.05);
   box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
 }
 .theme-circle-btn i {
@@ -458,6 +467,43 @@ html:not(.dark) header.glass-panel {
   background: rgba(250, 247, 240, 0.98) !important;
   border-bottom: 1px solid rgba(140, 98, 57, 0.15) !important;
   box-shadow: 0 4px 20px rgba(140, 98, 57, 0.05) !important;
+}
+
+/* Scrolled Header (glass-panel) Light Mode Styling (Active across ALL pages when scrolled) */
+html:not(.dark) header.glass-panel nav a,
+html:not(.dark) header.glass-panel nav button,
+html:not(.dark) header.glass-panel button:not(.theme-circle-btn) i,
+html:not(.dark) header.glass-panel #search-btn i,
+html:not(.dark) header.glass-panel #lang-text,
+html:not(.dark) header.glass-panel #lang-toggle i {
+  color: #1C1C1C !important;
+}
+
+html:not(.dark) header.glass-panel nav a:hover,
+html:not(.dark) header.glass-panel nav button:hover,
+html:not(.dark) header.glass-panel button:not(.theme-circle-btn):hover i {
+  color: var(--color-gold) !important;
+}
+
+html:not(.dark) header.glass-panel .rtl-toggle-pill {
+  border-color: rgba(28, 28, 28, 0.25) !important;
+  background-color: rgba(28, 28, 28, 0.06) !important;
+  color: #1C1C1C !important;
+}
+
+html:not(.dark) header.glass-panel .rtl-toggle-pill span {
+  color: #1C1C1C !important;
+}
+
+html:not(.dark) header.glass-panel .rtl-toggle-pill:hover {
+  background-color: var(--color-gold) !important;
+  border-color: var(--color-gold) !important;
+  color: #0F0F0F !important;
+}
+
+html:not(.dark) header.glass-panel .rtl-toggle-pill:hover span,
+html:not(.dark) header.glass-panel .rtl-toggle-pill:hover i {
+  color: #0F0F0F !important;
 }
 
 html.dark header.glass-panel {
@@ -530,6 +576,13 @@ html:not(.dark) body.service-details-page header:not(.glass-panel) #search-btn i
 html:not(.dark) body.service-details-page header:not(.glass-panel) #lang-text,
 html:not(.dark) body.service-details-page header:not(.glass-panel) #lang-toggle i,
 
+html:not(.dark) body.booking-page header:not(.glass-panel) nav a,
+html:not(.dark) body.booking-page header:not(.glass-panel) nav button,
+html:not(.dark) body.booking-page header:not(.glass-panel) button:not(.theme-circle-btn) i,
+html:not(.dark) body.booking-page header:not(.glass-panel) #search-btn i,
+html:not(.dark) body.booking-page header:not(.glass-panel) #lang-text,
+html:not(.dark) body.booking-page header:not(.glass-panel) #lang-toggle i,
+
 html:not(.dark) body.auth-page header:not(.glass-panel) nav a,
 html:not(.dark) body.auth-page header:not(.glass-panel) nav button,
 html:not(.dark) body.auth-page header:not(.glass-panel) button:not(.theme-circle-btn) i,
@@ -553,7 +606,26 @@ html:not(.dark) body.booking-success-page header:not(.glass-panel) #lang-toggle 
   color: #1C1C1C !important;
 }
 
+html:not(.dark) body.service-details-page header:not(.glass-panel) nav a:hover,
+html:not(.dark) body.service-details-page header:not(.glass-panel) nav button:hover,
+html:not(.dark) body.service-details-page header:not(.glass-panel) button:not(.theme-circle-btn):hover i,
+html:not(.dark) body.booking-page header:not(.glass-panel) nav a:hover,
+html:not(.dark) body.booking-page header:not(.glass-panel) nav button:hover,
+html:not(.dark) body.booking-page header:not(.glass-panel) button:not(.theme-circle-btn):hover i,
+html:not(.dark) body.auth-page header:not(.glass-panel) nav a:hover,
+html:not(.dark) body.auth-page header:not(.glass-panel) nav button:hover,
+html:not(.dark) body.auth-page header:not(.glass-panel) button:not(.theme-circle-btn):hover i,
+html:not(.dark) body.dashboard-page header:not(.glass-panel) nav a:hover,
+html:not(.dark) body.dashboard-page header:not(.glass-panel) nav button:hover,
+html:not(.dark) body.dashboard-page header:not(.glass-panel) button:not(.theme-circle-btn):hover i,
+html:not(.dark) body.booking-success-page header:not(.glass-panel) nav a:hover,
+html:not(.dark) body.booking-success-page header:not(.glass-panel) nav button:hover,
+html:not(.dark) body.booking-success-page header:not(.glass-panel) button:not(.theme-circle-btn):hover i {
+  color: var(--color-gold) !important;
+}
+
 html:not(.dark) body.service-details-page header:not(.glass-panel) .rtl-toggle-pill,
+html:not(.dark) body.booking-page header:not(.glass-panel) .rtl-toggle-pill,
 html:not(.dark) body.auth-page header:not(.glass-panel) .rtl-toggle-pill,
 html:not(.dark) body.dashboard-page header:not(.glass-panel) .rtl-toggle-pill,
 html:not(.dark) body.booking-success-page header:not(.glass-panel) .rtl-toggle-pill {
@@ -563,8 +635,86 @@ html:not(.dark) body.booking-success-page header:not(.glass-panel) .rtl-toggle-p
 }
 
 html:not(.dark) body.service-details-page header:not(.glass-panel) .rtl-toggle-pill span,
+html:not(.dark) body.booking-page header:not(.glass-panel) .rtl-toggle-pill span,
 html:not(.dark) body.auth-page header:not(.glass-panel) .rtl-toggle-pill span,
 html:not(.dark) body.dashboard-page header:not(.glass-panel) .rtl-toggle-pill span,
 html:not(.dark) body.booking-success-page header:not(.glass-panel) .rtl-toggle-pill span {
   color: #1C1C1C !important;
+}
+
+/* Exclusive Restoration Horizontal Scroll Controls (Light Mode Contrast) */
+html:not(.dark) #scroll-left-btn,
+html:not(.dark) #scroll-right-btn {
+  border-color: rgba(140, 98, 57, 0.4) !important;
+  color: #8C6239 !important;
+  background: rgba(250, 247, 240, 0.9) !important;
+  box-shadow: 0 2px 8px rgba(140, 98, 57, 0.08);
+}
+
+html:not(.dark) #scroll-left-btn:hover,
+html:not(.dark) #scroll-right-btn:hover {
+  border-color: var(--color-gold) !important;
+  color: #0F0F0F !important;
+  background: var(--color-gold) !important;
+}
+
+
+/* Card Hover CTA Text Contrast Fix */
+html:not(.dark) .glass-panel.group:hover a.text-gold,
+html:not(.dark) .glass-panel .group:hover a.text-gold {
+  color: #1C1C1C !important;
+}
+.dark .glass-panel.group:hover a.text-gold,
+.dark .glass-panel .group:hover a.text-gold {
+  color: #FAF7F0 !important;
+}
+
+
+/* Prevent button shifting or moving during hover - maintaining exact position & layout */
+button,
+button:hover,
+a.magnetic-btn,
+a.magnetic-btn:hover,
+.magnetic-btn,
+.magnetic-btn:hover,
+.theme-circle-btn,
+.theme-circle-btn:hover,
+.rtl-toggle-pill,
+.rtl-toggle-pill:hover,
+a[class*="rounded-full"],
+a[class*="rounded-full"]:hover,
+a[class*="btn"],
+a[class*="btn"]:hover {
+  transform: none !important;
+}
+
+/* Form Input & Placeholder Contrast Fix */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+textarea,
+select {
+  color: var(--text-primary) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-secondary) !important;
+  opacity: 0.75;
+}
+
+/* Mobile Drawer Closed State Protection */
+#mobile-drawer.translate-x-full {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* When mobile drawer is open, hide the page header bar so it never peeks through */
+body.drawer-open header > div:first-child {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
 }

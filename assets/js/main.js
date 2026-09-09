@@ -86,7 +86,7 @@ window.addEventListener('load', () => {
 document.addEventListener('DOMContentLoaded', () => {
   const header = document.querySelector('header');
   if (header) {
-    window.addEventListener('scroll', () => {
+    const handleScroll = () => {
       if (window.scrollY > 50) {
         header.classList.add('glass-panel', 'py-3');
         header.classList.remove('py-5', 'bg-transparent');
@@ -94,7 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {
         header.classList.remove('glass-panel', 'py-3');
         header.classList.add('py-5', 'bg-transparent');
       }
-    });
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
   }
 
   // Highlight current page
@@ -215,15 +217,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function openDrawer() {
     if (!mobileDrawer || !mobileDrawerOverlay) return;
+    document.body.classList.add('drawer-open', 'overflow-hidden');
     mobileDrawerOverlay.classList.remove('hidden');
     mobileDrawerOverlay.offsetWidth; // Reflow
     mobileDrawerOverlay.classList.add('opacity-100');
     mobileDrawer.classList.remove('translate-x-full');
-    document.body.classList.add('overflow-hidden'); // Lock body scroll
   }
 
   function closeDrawer() {
     if (!mobileDrawer || !mobileDrawerOverlay) return;
+    document.body.classList.remove('drawer-open');
     mobileDrawerOverlay.classList.remove('opacity-100');
     mobileDrawer.classList.add('translate-x-full');
     document.body.classList.remove('overflow-hidden'); // Restore body scroll
@@ -363,18 +366,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Magnetic Button effect simulation
+  // Magnetic Button effect simulation - disabled movement to prevent button shifting on hover
   const magneticBtns = document.querySelectorAll('.magnetic-btn');
   magneticBtns.forEach(btn => {
-    btn.addEventListener('mousemove', (e) => {
-      const bound = btn.getBoundingClientRect();
-      const x = e.clientX - bound.left - bound.width / 2;
-      const y = e.clientY - bound.top - bound.height / 2;
-      btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-    });
-    btn.addEventListener('mouseleave', () => {
-      btn.style.transform = 'translate(0, 0)';
-    });
+    btn.style.transform = 'none';
   });
 });
 

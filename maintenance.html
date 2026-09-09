@@ -44,13 +44,22 @@
   </script>
 </head>
 <body class="bg-[#FAF7F0] text-[#1C1C1C] dark:bg-[#0F0F0F] dark:text-[#F3ECE0] transition-colors duration-500 min-h-screen flex items-center justify-center relative text-center py-20 bg-cover bg-center" style="background-image: url('assets/images/leather_bg.jpg');">
-  <div class="absolute inset-0 bg-black/85 pointer-events-none"></div>
+  <div class="absolute inset-0 bg-[#FAF7F0]/90 dark:bg-black/85 pointer-events-none"></div>
 
-  
+  <!-- Top Right Corner Controls (Theme & RTL) -->
+  <div class="fixed top-6 right-6 z-50 flex items-center gap-4">
+    <button id="theme-toggle" class="theme-circle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+      <i class="bi bi-sun-fill text-lg"></i>
+    </button>
+    <button id="lang-toggle" class="rtl-toggle-pill" title="Toggle RTL" aria-label="Toggle RTL">
+      <i class="bi bi-arrow-left-right text-xs"></i>
+      <span id="lang-text">RTL</span>
+    </button>
+  </div>
 
   <div class="container mx-auto px-6 max-w-lg relative z-10 page-transition">
     
-    <div class="glass-panel p-10 rounded-3xl border border-gold/15 shadow-2xl space-y-8">
+    <div class="glass-panel p-10 rounded-3xl border border-gold/20 shadow-2xl space-y-8">
       
       <!-- Brand Logo -->
       <a href="index.html" class="inline-flex items-center gap-2 mb-2">
@@ -62,43 +71,43 @@
         <div class="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center text-gold mx-auto mb-4 border border-gold/20">
           <i class="bi bi-tools text-2xl"></i>
         </div>
-        <h1 class="text-3xl font-serif font-bold text-white">Scheduled Maintenance</h1>
-        <p class="text-xs text-gray-300 mt-2 leading-relaxed">
+        <h1 class="text-3xl font-serif font-bold text-text-primary">Scheduled Maintenance</h1>
+        <p class="text-xs text-text-secondary mt-2 leading-relaxed">
           Our digital booking systems are currently receiving a fresh leather conditioning and tune-up. We'll be back online shortly.
         </p>
       </div>
 
       <!-- Countdown Timer Widget -->
       <div class="grid grid-cols-4 gap-4 text-center">
-        <div class="glass-panel p-3.5 rounded-xl border border-gold/10">
+        <div class="bg-white/80 dark:bg-black/40 p-3.5 rounded-xl border border-gold/20 shadow-sm">
           <strong class="text-2xl font-serif text-gold block" id="cd-days">00</strong>
-          <span class="text-[9px] uppercase text-gray-400">Days</span>
+          <span class="text-[9px] uppercase font-bold text-text-secondary tracking-wider">Days</span>
         </div>
-        <div class="glass-panel p-3.5 rounded-xl border border-gold/10">
+        <div class="bg-white/80 dark:bg-black/40 p-3.5 rounded-xl border border-gold/20 shadow-sm">
           <strong class="text-2xl font-serif text-gold block" id="cd-hours">04</strong>
-          <span class="text-[9px] uppercase text-gray-400">Hours</span>
+          <span class="text-[9px] uppercase font-bold text-text-secondary tracking-wider">Hours</span>
         </div>
-        <div class="glass-panel p-3.5 rounded-xl border border-gold/10">
+        <div class="bg-white/80 dark:bg-black/40 p-3.5 rounded-xl border border-gold/20 shadow-sm">
           <strong class="text-2xl font-serif text-gold block" id="cd-minutes">12</strong>
-          <span class="text-[9px] uppercase text-gray-400">Min</span>
+          <span class="text-[9px] uppercase font-bold text-text-secondary tracking-wider">Min</span>
         </div>
-        <div class="glass-panel p-3.5 rounded-xl border border-gold/10">
+        <div class="bg-white/80 dark:bg-black/40 p-3.5 rounded-xl border border-gold/20 shadow-sm">
           <strong class="text-2xl font-serif text-gold block" id="cd-seconds">00</strong>
-          <span class="text-[9px] uppercase text-gray-400">Sec</span>
+          <span class="text-[9px] uppercase font-bold text-text-secondary tracking-wider">Sec</span>
         </div>
       </div>
 
       <!-- Status Alerts form -->
       <div class="space-y-4">
-        <h4 class="font-serif text-base font-bold text-white">Get Status Alerts</h4>
+        <h4 class="font-serif text-base font-bold text-text-primary">Get Status Alerts</h4>
         <form onsubmit="event.preventDefault(); showToast('Subscribed for Maintenance Alerts!', 'success'); this.reset();" class="flex gap-2">
-          <input type="email" placeholder="Your Email Address" class="w-full bg-black/45 border border-gold/15 rounded-lg py-3 px-4 text-xs text-white focus:outline-none focus:border-gold" required>
+          <input type="email" placeholder="Your Email Address" class="w-full bg-white dark:bg-black/45 border border-gold/30 rounded-lg py-3 px-4 text-xs text-text-primary placeholder:text-text-secondary/60 focus:outline-none focus:border-gold shadow-sm" required>
           <button type="submit" class="bg-gold hover:bg-gold-hover text-black px-6 rounded-lg text-xs font-bold uppercase transition"><i class="bi bi-envelope mr-1"></i> Notify</button>
         </form>
       </div>
 
       <!-- Return Home Link -->
-      <div class="flex justify-center gap-6 border-t border-gray-800 pt-6">
+      <div class="flex justify-center gap-6 border-t border-gold/15 dark:border-gray-800 pt-6">
         <a href="index.html" class="text-xs text-gold hover:underline flex items-center gap-1"><i class="bi bi-arrow-left"></i> Return Home</a>
       </div>
 

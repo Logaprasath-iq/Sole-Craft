@@ -49,18 +49,18 @@
 
   <!-- Premium Sticky Header Navbar -->
   <header class="fixed top-0 left-0 w-full z-50 py-3 lg:py-5 transition-all duration-300 bg-transparent">
-    <div class="container mx-auto px-6 flex justify-between items-center">
+    <div class="container mx-auto px-4 sm:px-6 flex justify-between items-center">
       <!-- Logo -->
-      <a href="index.html" class="flex items-center gap-2">
-        <img src="assets/images/logo.png" alt="Sole Craft Logo" class="w-8 h-8 rounded-full border border-gold/30 object-cover">
-        <span class="font-serif text-2xl font-bold tracking-wider text-gold-gradient">SOLE CRAFT</span>
+      <a href="index.html" class="flex items-center gap-2 shrink-0">
+        <img src="assets/images/logo.png" alt="Sole Craft Logo" class="w-8 h-8 rounded-full border border-gold/30 object-cover shrink-0">
+        <span class="font-serif text-xl xl:text-2xl font-bold tracking-wider text-gold-gradient whitespace-nowrap">SOLE CRAFT</span>
       </a>
 
       <!-- Desktop Navigation links with Dropdowns -->
-      <nav class="hidden lg:flex items-center gap-8 text-xs uppercase tracking-widest font-bold text-text-primary">
+      <nav class="hidden lg:flex items-center gap-3.5 xl:gap-6 2xl:gap-8 text-[11px] xl:text-xs uppercase tracking-wider xl:tracking-widest font-bold text-text-primary whitespace-nowrap shrink-0">
         <!-- Home Dropdown -->
         <div class="nav-item-has-dropdown relative py-2">
-          <button class="hover:text-gold transition flex items-center gap-1.5 uppercase font-bold tracking-widest">
+          <button class="hover:text-gold transition flex items-center gap-1.5 uppercase font-bold tracking-wider xl:tracking-widest">
             Home <i class="bi bi-chevron-down text-[9px]"></i>
           </button>
           <div class="nav-dropdown">
@@ -77,7 +77,7 @@
 
         <!-- Pages Dropdown -->
         <div class="nav-item-has-dropdown relative py-2">
-          <button class="hover:text-gold transition flex items-center gap-1.5 uppercase font-bold tracking-widest">
+          <button class="hover:text-gold transition flex items-center gap-1.5 uppercase font-bold tracking-wider xl:tracking-widest">
             Pages <i class="bi bi-chevron-down text-[9px]"></i>
           </button>
           <div class="nav-dropdown">
@@ -91,28 +91,24 @@
       </nav>
 
       <!-- Right Action Items -->
-      <div class="hidden lg:flex items-center gap-4">
-        <!-- Search Icon -->
-        <button id="search-btn" class="text-text-primary hover:text-gold transition p-2">
-          <i class="bi bi-search text-lg"></i>
-        </button>
+      <div class="hidden lg:flex items-center gap-2 xl:gap-3 2xl:gap-4 shrink-0">
         <!-- Theme Toggle Circular Button -->
-        <button id="theme-toggle" class="theme-circle-btn">
-          <i class="bi bi-sun-fill text-lg"></i>
+        <button id="theme-toggle" class="theme-circle-btn shrink-0" title="Toggle Theme">
+          <i class="bi bi-sun-fill text-base xl:text-lg"></i>
         </button>
         <!-- Language/RTL Toggle Pill Button -->
-        <button id="lang-toggle" class="rtl-toggle-pill">
+        <button id="lang-toggle" class="rtl-toggle-pill shrink-0 px-2.5 xl:px-3 py-1.5 text-[11px] xl:text-xs" title="Toggle RTL">
           <i class="bi bi-arrow-left-right text-xs"></i>
           <span id="lang-text">RTL</span>
         </button>
         <!-- Login link (Pill Border) -->
-        <a href="login.html" class="border border-gold text-gold hover:bg-gold hover:text-black transition px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider font-bold">Login</a>
+        <a href="login.html" class="h-9 xl:h-10 inline-flex items-center justify-center border border-gold text-gold hover:bg-gold hover:text-black transition px-3.5 xl:px-5 rounded-full text-[11px] xl:text-xs font-bold uppercase tracking-wider shrink-0">Login</a>
         <!-- CTA button (Solid Gold Pill for Signup) -->
-        <a href="register.html" class="magnetic-btn bg-gold hover:bg-gold-hover text-black text-xs uppercase tracking-wider font-bold py-3 px-6 rounded-full shadow-lg transition">Signup</a>
+        <a href="register.html" class="magnetic-btn h-9 xl:h-10 inline-flex items-center justify-center bg-gold hover:bg-gold-hover text-black text-[11px] xl:text-xs uppercase tracking-wider font-bold px-4.5 xl:px-6 rounded-full shadow-lg transition shrink-0">Signup</a>
       </div>
 
       <!-- Mobile Hamburger button -->
-      <button id="mobile-menu-btn" class="lg:hidden text-text-primary p-2">
+      <button id="mobile-menu-btn" class="lg:hidden text-text-primary p-2 shrink-0" aria-label="Open Menu">
         <i class="bi bi-list text-2xl"></i>
       </button>
     </div>
@@ -122,7 +118,7 @@
     <div id="mobile-drawer-overlay" class="fixed inset-0 bg-black/60 z-[9998] hidden opacity-0 transition-opacity duration-300"></div>
 
     <!-- Mobile Navigation Drawer -->
-    <div id="mobile-drawer" class="fixed top-0 right-0 h-full w-[85vw] max-w-[380px] bg-[#0F0F0F] text-[#F3ECE0] z-[9999] transform translate-x-full transition-transform duration-300 overflow-y-auto flex flex-col justify-between border-l border-gold/15 shadow-2xl">
+    <div id="mobile-drawer" class="fixed top-0 right-0 h-full w-full sm:w-[85vw] sm:max-w-[380px] bg-[#0F0F0F] text-[#F3ECE0] z-[9999] transform translate-x-full transition-transform duration-300 overflow-y-auto flex flex-col justify-between border-l border-gold/15 shadow-2xl">
       <!-- Drawer Header -->
       <div class="p-6 flex items-center justify-between border-b border-gold/15">
         <a href="index.html" class="flex items-center gap-2">
@@ -323,9 +319,81 @@
     <img class="lightbox-content" id="lightbox-img" src="">
   </div>
 
+  
+  <!-- Gallery Standards & Inspection Benchmarks -->
+  <section class="py-20 bg-[#F3ECE0] dark:bg-[#141414] border-t border-gold/10 relative z-10 w-full">
+    <div class="container mx-auto px-6">
+      
+      <div class="max-w-2xl mb-16 page-transition text-left">
+        <span class="text-gold font-serif italic text-lg font-semibold tracking-wider block mb-2">Artisan Benchmarks</span>
+        <h2 class="text-3xl lg:text-4xl font-serif font-bold text-text-primary mb-3">Our Inspection & Finish Criteria</h2>
+        <p class="text-text-secondary text-sm leading-relaxed">
+          Every before-and-after case in this gallery represents dozens of hours of disciplined handcrafting. Here is what every completed restoration guarantees:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+        
+        <!-- Standard 1 -->
+        <div class="glass-panel p-8 rounded-2xl border border-gold/15">
+          <div class="w-12 h-12 rounded-full border border-gold/30 flex items-center justify-center text-gold mb-6">
+            <i class="bi bi-palette-fill text-xl"></i>
+          </div>
+          <h3 class="font-serif text-xl font-bold text-text-primary mb-3">Color Matching Guarantee</h3>
+          <p class="text-xs text-text-secondary leading-relaxed">
+            Custom hand-mixed pigments formulated specifically to match your shoe's original dye batch, grain depth, and natural patina gradients.
+          </p>
+        </div>
+
+        <!-- Standard 2 -->
+        <div class="glass-panel p-8 rounded-2xl border border-gold/15">
+          <div class="w-12 h-12 rounded-full border border-gold/30 flex items-center justify-center text-gold mb-6">
+            <i class="bi bi-layers-fill text-xl"></i>
+          </div>
+          <h3 class="font-serif text-xl font-bold text-text-primary mb-3">Genuine European Outsoles</h3>
+          <p class="text-xs text-text-secondary leading-relaxed">
+            Authentic Italian Vibram rubber, German JR oak-bark leathers, and precision hand-beveled edges preserving factory balance.
+          </p>
+        </div>
+
+        <!-- Standard 3 -->
+        <div class="glass-panel p-8 rounded-2xl border border-gold/15">
+          <div class="w-12 h-12 rounded-full border border-gold/30 flex items-center justify-center text-gold mb-6">
+            <i class="bi bi-check2-circle text-xl"></i>
+          </div>
+          <h3 class="font-serif text-xl font-bold text-text-primary mb-3">Orthopedic Comfort Reset</h3>
+          <p class="text-xs text-text-secondary leading-relaxed">
+            Inner corkbed replenishment and steel shank stabilization that preserves your unique foot impression while restoring arch support.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Gallery CTA Banner -->
+      <div class="mt-16 p-10 md:p-14 rounded-3xl glass-panel border border-gold/20 flex flex-col md:flex-row items-center justify-between gap-8 text-left">
+        <div class="max-w-xl">
+          <span class="text-xs uppercase font-bold tracking-widest text-gold block mb-2">Have a Pair in Need of Renewal?</span>
+          <h3 class="text-3xl lg:text-4xl font-serif font-bold text-text-primary mb-3">Give Your Shoes a Second Life</h3>
+          <p class="text-xs text-text-secondary leading-relaxed">
+            From vintage streetwear grails to classic bespoke oxfords, let our master cobblers inspect and restore your prized footwear.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-4 flex-shrink-0">
+          <a href="booking.html" class="h-12 inline-flex items-center justify-center bg-gold hover:bg-gold-hover text-black text-xs uppercase tracking-widest font-bold px-8 rounded-full shadow-xl transition">
+            Book a Repair
+          </a>
+          <a href="services.html" class="h-12 inline-flex items-center justify-center border border-gold text-text-primary hover:bg-gold hover:text-black text-xs uppercase tracking-widest font-bold px-8 rounded-full transition">
+            Explore Services
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- Stylist Footer matching mockup -->
   <footer class="bg-[#0C0C0C] text-[#FAF7F0] pt-20 pb-8 font-sans border-t border-gold/15 relative z-10 w-full">
-    <div class="mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-16 text-left w-full max-w-none">
+    <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 mb-16 text-left items-start">
       
       <!-- Column 1: Brand details & Socials -->
       <div class="space-y-6">
@@ -334,7 +402,7 @@
           <span class="font-serif text-2xl font-bold tracking-wider text-gold-gradient">SOLE CRAFT</span>
         </a>
         <p class="text-gray-400 text-xs leading-relaxed font-sans">
-          We Restore. You Walk Better.. Premium shoe repair, restoration and craftsmanship service.
+          We Restore. You Walk Better. Premium shoe repair, restoration and craftsmanship service.
         </p>
         <!-- Social Icons (Functional Outbound Links) -->
         <div class="flex flex-wrap gap-2">
@@ -348,7 +416,7 @@
 
       <!-- Column 2: Subscribe Newsletter Form -->
       <div class="space-y-4">
-        <h4 class="text-xs uppercase font-extrabold tracking-widest text-gold mb-2">Subscribe</h4>
+        <h4 class="text-xs uppercase font-extrabold tracking-widest text-gold mb-6">Subscribe</h4>
         <p class="text-gray-400 text-xs leading-relaxed font-sans">
           Get restoration guides, seasonal leather maintenance tips, and exclusive pricing alerts.
         </p>
@@ -386,7 +454,7 @@
 
       <!-- Column 5: Support -->
       <div>
-        <h4 class="text-xs uppercase font-extrabold tracking-widest text-gold mb-6">Support</h4>
+        <h4 class="text-xs uppercase font-extrabold tracking-widest text-gold mb-6">Legal</h4>
         <ul class="space-y-3 text-xs text-gray-400 font-sans">
           <li><a href="booking.html" class="hover:text-gold transition">Booking</a></li>
           <li><a href="about.html" class="hover:text-gold transition">FAQs</a></li>
@@ -410,7 +478,7 @@
     </div>
 
     <!-- Bottom copyright -->
-    <div class="mx-auto px-6 lg:px-12 border-t border-gray-900 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4 w-full max-w-none">
+    <div class="container mx-auto px-6 border-t border-gray-900 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4">
       <div>&copy; 2026 Sole Craft. All Rights Reserved.</div>
       <div class="flex gap-4 font-sans text-[11px]">
         <a href="coming-soon.html" class="hover:text-gold transition">Terms of Service</a>
