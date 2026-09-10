@@ -68,7 +68,7 @@
             <span class="font-serif text-2xl font-bold tracking-wider text-gold-gradient">SOLE CRAFT</span>
           </a>
           <h2 class="text-2xl font-serif font-bold text-text-primary">Welcome Back</h2>
-          <p class="text-xs text-text-secondary">Access your shoe restoration dashboard</p>
+          <p class="text-xs text-text-secondary">Access your shoe restoration account</p>
         </div>
 
         <form id="login-form" class="space-y-6">
@@ -144,7 +144,7 @@
             localStorage.setItem('sc_logged_in_user', email);
             showToast(`Welcome back, ${user.name}!`, 'success');
             setTimeout(() => {
-              window.location.href = 'dashboard.html';
+              window.location.href = 'index.html';
             }, 1000);
           } else {
             showToast('Invalid email or password credentials.', 'error');
