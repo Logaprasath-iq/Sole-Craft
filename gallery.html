@@ -391,45 +391,45 @@
     </div>
   </section>
 
-  <!-- Stylist Footer matching mockup -->
-  <footer class="bg-[#0C0C0C] text-[#FAF7F0] pt-20 pb-8 font-sans border-t border-gold/15 relative z-10 w-full">
-    <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 mb-16 text-left items-start">
+    <!-- Stylist Footer matching mockup -->
+  <footer class="bg-[#0C0C0C] text-[#FAF7F0] pt-16 sm:pt-20 pb-8 font-sans border-t border-gold/15 relative z-10 w-full">
+    <div class="container mx-auto px-4 sm:px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-[2.3fr_2.1fr_1.1fr_1.4fr_1.1fr_2fr] gap-8 lg:gap-6 xl:gap-8 mb-16 text-left items-start">
       
       <!-- Column 1: Brand details & Socials -->
-      <div class="space-y-6">
-        <a href="index.html" class="flex items-center gap-2">
-          <img src="assets/images/logo.png" alt="Sole Craft Logo" class="w-8 h-8 rounded-full border border-gold/30 object-cover">
-          <span class="font-serif text-2xl font-bold tracking-wider text-gold-gradient">SOLE CRAFT</span>
+      <div class="space-y-4">
+        <a href="index.html" class="h-8 flex items-center gap-2 mb-6">
+          <img src="assets/images/logo.png" alt="Sole Craft Logo" class="w-8 h-8 rounded-full border border-gold/30 object-cover shrink-0">
+          <span class="font-serif text-xl xl:text-2xl font-bold tracking-wider text-gold-gradient whitespace-nowrap">SOLE CRAFT</span>
         </a>
         <p class="text-gray-400 text-xs leading-relaxed font-sans">
           We Restore. You Walk Better. Premium shoe repair, restoration and craftsmanship service.
         </p>
         <!-- Social Icons (Functional Outbound Links) -->
-        <div class="flex flex-wrap gap-2">
-          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-gray-800 flex items-center justify-center text-gold hover:border-gold hover:bg-gold hover:text-black transition"><i class="bi bi-facebook text-xs"></i></a>
-          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-gray-800 flex items-center justify-center text-gold hover:border-gold hover:bg-gold hover:text-black transition"><i class="bi bi-instagram text-xs"></i></a>
-          <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-gray-800 flex items-center justify-center text-gold hover:border-gold hover:bg-gold hover:text-black transition"><i class="bi bi-youtube text-xs"></i></a>
-          <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-gray-800 flex items-center justify-center text-gold hover:border-gold hover:bg-gold hover:text-black transition"><i class="bi bi-whatsapp text-xs"></i></a>
-          <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-gray-800 flex items-center justify-center text-gold hover:border-gold hover:bg-gold hover:text-black transition"><i class="bi bi-twitter-x text-xs"></i></a>
+        <div class="flex items-center gap-2 xl:gap-2.5 flex-nowrap pt-1">
+          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-gray-800 flex items-center justify-center text-gold hover:border-gold hover:bg-gold hover:text-black transition shrink-0"><i class="bi bi-facebook text-xs"></i></a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-gray-800 flex items-center justify-center text-gold hover:border-gold hover:bg-gold hover:text-black transition shrink-0"><i class="bi bi-instagram text-xs"></i></a>
+          <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-gray-800 flex items-center justify-center text-gold hover:border-gold hover:bg-gold hover:text-black transition shrink-0"><i class="bi bi-youtube text-xs"></i></a>
+          <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-gray-800 flex items-center justify-center text-gold hover:border-gold hover:bg-gold hover:text-black transition shrink-0"><i class="bi bi-whatsapp text-xs"></i></a>
+          <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-gray-800 flex items-center justify-center text-gold hover:border-gold hover:bg-gold hover:text-black transition shrink-0"><i class="bi bi-twitter-x text-xs"></i></a>
         </div>
       </div>
 
       <!-- Column 2: Subscribe Newsletter Form -->
       <div class="space-y-4">
-        <h4 class="text-xs uppercase font-extrabold tracking-widest text-gold mb-6">Subscribe</h4>
+        <h4 class="h-8 flex items-center text-xs uppercase font-extrabold tracking-widest text-gold mb-6">Subscribe</h4>
         <p class="text-gray-400 text-xs leading-relaxed font-sans">
           Get restoration guides, seasonal leather maintenance tips, and exclusive pricing alerts.
         </p>
         <form onsubmit="event.preventDefault(); showToast('Subscribed to Newsletter!', 'success'); this.reset();" class="flex flex-col gap-2 pt-1">
-          <input type="email" placeholder="Your email address" class="bg-[#171717] border border-gray-800 rounded-full py-2 px-4 text-xs text-[#FAF7F0] focus:outline-none focus:border-gold w-full" required>
+          <input type="email" placeholder="Your email address" class="bg-[#171717] border border-gray-800 rounded-full py-2 px-4 text-xs text-[#FAF7F0] focus:outline-none focus:border-gold w-full placeholder:text-gray-500" required>
           <button type="submit" class="bg-gold hover:bg-gold-hover text-black px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider transition w-full">Subscribe</button>
         </form>
       </div>
 
       <!-- Column 3: Explore -->
       <div>
-        <h4 class="text-xs uppercase font-extrabold tracking-widest text-gold mb-6">Explore</h4>
-        <ul class="space-y-3 text-xs text-gray-400">
+        <h4 class="h-8 flex items-center text-xs uppercase font-extrabold tracking-widest text-gold mb-6">Explore</h4>
+        <ul class="space-y-3 text-xs text-gray-400 font-sans">
           <li><a href="index.html" class="hover:text-gold transition">Home</a></li>
           <li><a href="about.html" class="hover:text-gold transition">About</a></li>
           <li><a href="services.html" class="hover:text-gold transition">Services</a></li>
@@ -442,7 +442,7 @@
 
       <!-- Column 4: Services -->
       <div>
-        <h4 class="text-xs uppercase font-extrabold tracking-widest text-gold mb-6">Services</h4>
+        <h4 class="h-8 flex items-center text-xs uppercase font-extrabold tracking-widest text-gold mb-6">Services</h4>
         <ul class="space-y-3 text-xs text-gray-400 font-sans">
           <li><a href="service-details.html?service=sole-replacement" class="hover:text-gold transition">Sole Replacement</a></li>
           <li><a href="service-details.html?service=heel-repair" class="hover:text-gold transition">Heel Repair</a></li>
@@ -452,9 +452,9 @@
         </ul>
       </div>
 
-      <!-- Column 5: Support -->
+      <!-- Column 5: Legal -->
       <div>
-        <h4 class="text-xs uppercase font-extrabold tracking-widest text-gold mb-6">Legal</h4>
+        <h4 class="h-8 flex items-center text-xs uppercase font-extrabold tracking-widest text-gold mb-6">Legal</h4>
         <ul class="space-y-3 text-xs text-gray-400 font-sans">
           <li><a href="booking.html" class="hover:text-gold transition">Booking</a></li>
           <li><a href="about.html" class="hover:text-gold transition">FAQs</a></li>
@@ -465,20 +465,23 @@
 
       <!-- Column 6: Contact -->
       <div>
-        <h4 class="text-xs uppercase font-extrabold tracking-widest text-gold mb-6">Contact</h4>
+        <h4 class="h-8 flex items-center text-xs uppercase font-extrabold tracking-widest text-gold mb-6">Contact</h4>
         <div class="space-y-3 text-xs text-gray-400 leading-relaxed font-sans">
           <p>42 Leather Lane, Craft District,<br>Mumbai 400001, India</p>
-          <p class="font-bold text-white">+91 98765 43210</p>
-          <p class="text-gold">hello@solecraft.in</p>
-          <p class="text-[10px]">Mon–Sat: 9:00 AM – 7:00 PM | Sun: 10:00 AM – 4:00 PM</p>
-          <a href="contact.html" class="text-gold font-bold hover:underline block pt-1">Get Directions &rarr;</a>
+          <p class="font-bold text-white text-sm">+91 98765 43210</p>
+          <p><a href="mailto:hello@solecraft.in" class="text-gold hover:underline">hello@solecraft.in</a></p>
+          <p class="text-[11px] text-gray-400 leading-tight">
+            Mon–Sat: 9:00 AM – 7:00 PM<br>
+            Sun: 10:00 AM – 4:00 PM
+          </p>
+          <a href="contact.html" class="text-gold font-bold hover:underline inline-flex items-center gap-1 pt-1">Get Directions &rarr;</a>
         </div>
       </div>
 
     </div>
 
     <!-- Bottom copyright -->
-    <div class="container mx-auto px-6 border-t border-gray-900 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4">
+    <div class="container mx-auto px-4 sm:px-6 border-t border-gray-900 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4">
       <div>&copy; 2026 Sole Craft. All Rights Reserved.</div>
       <div class="flex gap-4 font-sans text-[11px]">
         <a href="coming-soon.html" class="hover:text-gold transition">Terms of Service</a>
