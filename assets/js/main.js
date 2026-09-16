@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
   navLinks.forEach(link => {
     const linkPath = link.getAttribute('href');
     if (linkPath === currentPath) {
-      link.classList.add('text-gold', 'font-semibold');
+      link.classList.add('text-gold', 'active', 'font-semibold');
       link.classList.remove('text-text-primary');
       
       // Highlight parent dropdown button if link is nested
@@ -121,7 +121,15 @@ document.addEventListener('DOMContentLoaded', () => {
       if (parentDropdown) {
         const toggleBtn = parentDropdown.querySelector('button');
         if (toggleBtn) {
-          toggleBtn.classList.add('text-gold', 'font-semibold');
+          toggleBtn.classList.add('text-gold', 'active', 'font-semibold');
+        }
+      }
+
+      const mobileMenu = link.closest('.mobile-dropdown-menu');
+      if (mobileMenu) {
+        const mobileToggle = mobileMenu.parentElement.querySelector('.mobile-dropdown-toggle');
+        if (mobileToggle) {
+          mobileToggle.classList.add('text-gold', 'active', 'font-semibold');
         }
       }
     }
@@ -166,8 +174,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (mobileThemeToggle) {
       mobileThemeToggle.innerHTML = isDark
-        ? '<i class="bi bi-sun-fill text-lg text-[#E6C387]"></i>'
-        : '<i class="bi bi-moon-fill text-lg text-[#8C6239]"></i>';
+        ? '<i class="bi bi-sun-fill text-lg text-gold"></i>'
+        : '<i class="bi bi-moon-fill text-lg text-gold"></i>';
     }
   }
 

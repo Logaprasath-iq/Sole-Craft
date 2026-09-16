@@ -415,13 +415,20 @@ h1, h2, h3, h4, h5, h6, .font-serif {
 }
 
 /* Header Contrast Fix when Transparent on Dark Banners */
-header:not(.glass-panel) nav a,
-header:not(.glass-panel) nav button,
+header:not(.glass-panel) nav a:not(.text-gold):not(.active),
+header:not(.glass-panel) nav button:not(.text-gold):not(.active),
 header:not(.glass-panel) button:not(.theme-circle-btn) i,
 header:not(.glass-panel) #search-btn i,
 header:not(.glass-panel) #lang-text,
 header:not(.glass-panel) #lang-toggle i {
   color: #FAF7F0 !important;
+}
+
+header:not(.glass-panel) nav a.text-gold,
+header:not(.glass-panel) nav a.active,
+header:not(.glass-panel) nav button.text-gold,
+header:not(.glass-panel) nav button.active {
+  color: var(--color-gold) !important;
 }
 
 header:not(.glass-panel) nav a:hover,
@@ -437,13 +444,20 @@ header:not(.glass-panel) .rtl-toggle-pill {
 }
 
 /* Landing Page (index.html) Light Mode Override (when transparent header sits on light cream background) */
-html:not(.dark) body.index-page header:not(.glass-panel) nav a,
-html:not(.dark) body.index-page header:not(.glass-panel) nav button,
+html:not(.dark) body.index-page header:not(.glass-panel) nav a:not(.text-gold):not(.active),
+html:not(.dark) body.index-page header:not(.glass-panel) nav button:not(.text-gold):not(.active),
 html:not(.dark) body.index-page header:not(.glass-panel) button:not(.theme-circle-btn) i,
 html:not(.dark) body.index-page header:not(.glass-panel) #search-btn i,
 html:not(.dark) body.index-page header:not(.glass-panel) #lang-text,
 html:not(.dark) body.index-page header:not(.glass-panel) #lang-toggle i {
   color: #1C1C1C !important;
+}
+
+html:not(.dark) body.index-page header:not(.glass-panel) nav a.text-gold,
+html:not(.dark) body.index-page header:not(.glass-panel) nav a.active,
+html:not(.dark) body.index-page header:not(.glass-panel) nav button.text-gold,
+html:not(.dark) body.index-page header:not(.glass-panel) nav button.active {
+  color: var(--color-gold) !important;
 }
 
 html:not(.dark) body.index-page header:not(.glass-panel) nav a:hover,
@@ -470,13 +484,21 @@ html:not(.dark) header.glass-panel {
 }
 
 /* Scrolled Header (glass-panel) Light Mode Styling (Active across ALL pages when scrolled) */
-html:not(.dark) header.glass-panel nav a,
-html:not(.dark) header.glass-panel nav button,
+html:not(.dark) header.glass-panel nav a:not(.text-gold):not(.active),
+html:not(.dark) header.glass-panel nav button:not(.text-gold):not(.active),
 html:not(.dark) header.glass-panel button:not(.theme-circle-btn) i,
 html:not(.dark) header.glass-panel #search-btn i,
 html:not(.dark) header.glass-panel #lang-text,
 html:not(.dark) header.glass-panel #lang-toggle i {
   color: #1C1C1C !important;
+}
+
+/* Active Navigation Item Highlight in Scrolled Light Header */
+html:not(.dark) header.glass-panel nav a.text-gold,
+html:not(.dark) header.glass-panel nav a.active,
+html:not(.dark) header.glass-panel nav button.text-gold,
+html:not(.dark) header.glass-panel nav button.active {
+  color: var(--color-gold) !important;
 }
 
 html:not(.dark) header.glass-panel nav a:hover,
@@ -512,15 +534,163 @@ html.dark header.glass-panel {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
 }
 
+/* Separation Line between Navbar and Hero Section */
+header:not(.glass-panel) {
+  border-bottom: 1px solid rgba(181, 131, 90, 0.2) !important;
+}
 
+html:not(.dark) header:not(.glass-panel) {
+  border-bottom: 1px solid rgba(140, 98, 57, 0.2) !important;
+}
 
 /* Mobile Drawer Overlay and Drawer Navigation Styles */
 #mobile-drawer-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 99998 !important;
   pointer-events: auto;
 }
 
 #mobile-drawer {
-  box-shadow: -10px 0 35px -5px rgba(0, 0, 0, 0.5);
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  height: 100% !important;
+  height: 100dvh !important;
+  z-index: 99999 !important;
+  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease !important;
+}
+
+/* --- Light Mode Mobile Drawer --- */
+html:not(.dark) #mobile-drawer {
+  background-color: #FAF7F0 !important;
+  color: #1C1C1C !important;
+  border-left: 1px solid rgba(140, 98, 57, 0.15) !important;
+  box-shadow: -10px 0 35px -5px rgba(140, 98, 57, 0.15) !important;
+}
+
+html:not(.dark) #mobile-drawer .border-b,
+html:not(.dark) #mobile-drawer .border-t,
+html:not(.dark) #mobile-drawer [class*="border-gold/"] {
+  border-color: rgba(140, 98, 57, 0.15) !important;
+}
+
+html:not(.dark) #mobile-drawer #mobile-drawer-close {
+  color: #1C1C1C !important;
+}
+html:not(.dark) #mobile-drawer #mobile-drawer-close:hover {
+  color: var(--color-gold) !important;
+}
+
+html:not(.dark) #mobile-drawer #mobile-theme-toggle,
+html:not(.dark) #mobile-drawer #mobile-lang-toggle {
+  background-color: #F3ECE0 !important;
+  border-color: rgba(140, 98, 57, 0.2) !important;
+  color: #1C1C1C !important;
+}
+html:not(.dark) #mobile-drawer #mobile-theme-toggle:hover,
+html:not(.dark) #mobile-drawer #mobile-lang-toggle:hover {
+  border-color: var(--color-gold) !important;
+}
+html:not(.dark) #mobile-drawer #mobile-theme-toggle i,
+html:not(.dark) #mobile-drawer #mobile-lang-toggle i {
+  color: var(--color-gold) !important;
+}
+
+html:not(.dark) #mobile-drawer nav a:not(.text-gold):not(.active),
+html:not(.dark) #mobile-drawer nav button:not(.text-gold):not(.active) {
+  color: #1C1C1C !important;
+  border-color: rgba(140, 98, 57, 0.1) !important;
+}
+html:not(.dark) #mobile-drawer nav a:hover,
+html:not(.dark) #mobile-drawer nav button:hover {
+  color: var(--color-gold) !important;
+}
+html:not(.dark) #mobile-drawer nav a.text-gold,
+html:not(.dark) #mobile-drawer nav a.active,
+html:not(.dark) #mobile-drawer nav button.text-gold,
+html:not(.dark) #mobile-drawer nav button.active {
+  color: var(--color-gold) !important;
+}
+
+html:not(.dark) #mobile-drawer .mobile-dropdown-menu a {
+  color: #5A5248 !important;
+  border-color: rgba(140, 98, 57, 0.1) !important;
+}
+html:not(.dark) #mobile-drawer .mobile-dropdown-menu a:hover {
+  color: var(--color-gold) !important;
+}
+
+html:not(.dark) #mobile-drawer .bg-\[\#121212\],
+html:not(.dark) #mobile-drawer > div:last-child {
+  background-color: #F3ECE0 !important;
+  border-color: rgba(140, 98, 57, 0.15) !important;
+}
+
+/* --- Dark Mode Mobile Drawer --- */
+html.dark #mobile-drawer {
+  background-color: #0F0F0F !important;
+  color: #F3ECE0 !important;
+  border-left: 1px solid rgba(181, 131, 90, 0.15) !important;
+  box-shadow: -10px 0 35px -5px rgba(0, 0, 0, 0.5) !important;
+}
+
+html.dark #mobile-drawer .border-b,
+html.dark #mobile-drawer .border-t,
+html.dark #mobile-drawer [class*="border-gold/"] {
+  border-color: rgba(181, 131, 90, 0.15) !important;
+}
+
+html.dark #mobile-drawer #mobile-drawer-close {
+  color: #F3ECE0 !important;
+}
+html.dark #mobile-drawer #mobile-drawer-close:hover {
+  color: var(--color-gold) !important;
+}
+
+html.dark #mobile-drawer #mobile-theme-toggle,
+html.dark #mobile-drawer #mobile-lang-toggle {
+  background-color: #171717 !important;
+  border-color: rgba(181, 131, 90, 0.2) !important;
+  color: #FAF7F0 !important;
+}
+html.dark #mobile-drawer #mobile-theme-toggle:hover,
+html.dark #mobile-drawer #mobile-lang-toggle:hover {
+  border-color: var(--color-gold) !important;
+}
+html.dark #mobile-drawer #mobile-theme-toggle i,
+html.dark #mobile-drawer #mobile-lang-toggle i {
+  color: var(--color-gold) !important;
+}
+
+html.dark #mobile-drawer nav a:not(.text-gold):not(.active),
+html.dark #mobile-drawer nav button:not(.text-gold):not(.active) {
+  color: #F3ECE0 !important;
+  border-color: rgba(181, 131, 90, 0.1) !important;
+}
+html.dark #mobile-drawer nav a:hover,
+html.dark #mobile-drawer nav button:hover {
+  color: var(--color-gold) !important;
+}
+html.dark #mobile-drawer nav a.text-gold,
+html.dark #mobile-drawer nav a.active,
+html.dark #mobile-drawer nav button.text-gold,
+html.dark #mobile-drawer nav button.active {
+  color: var(--color-gold) !important;
+}
+
+html.dark #mobile-drawer .mobile-dropdown-menu a {
+  color: #A69D90 !important;
+  border-color: rgba(181, 131, 90, 0.1) !important;
+}
+html.dark #mobile-drawer .mobile-dropdown-menu a:hover {
+  color: var(--color-gold) !important;
+}
+
+html.dark #mobile-drawer .bg-\[\#121212\],
+html.dark #mobile-drawer > div:last-child {
+  background-color: #121212 !important;
+  border-color: rgba(181, 131, 90, 0.15) !important;
 }
 
 /* Accordion animations */
