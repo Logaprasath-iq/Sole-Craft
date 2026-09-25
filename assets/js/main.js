@@ -40,6 +40,7 @@ const INITIAL_MESSAGES = [
 ];
 
 const INITIAL_USERS = [
+  { email: 'logaprasath2003@gmail.com', name: 'Logaprasath', password: 'password', phone: '9876543210', date: '2026-08-01' },
   { email: 'user@example.com', name: 'John Doe', password: 'password', phone: '9876543210', date: '2026-07-01' },
   { email: 'admin@example.com', name: 'Admin Sole Craft', password: 'admin', phone: '9998887776', date: '2026-06-15' }
 ];

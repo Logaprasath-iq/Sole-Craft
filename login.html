@@ -71,6 +71,23 @@
           <p class="text-xs text-text-secondary">Access your shoe restoration account</p>
         </div>
 
+        <!-- Logged-in Status Banner -->
+        <div id="login-status-banner" class="hidden mb-6 p-4 rounded-2xl bg-gold/10 border border-gold/30 text-center">
+          <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gold/20 text-gold mb-2">
+            <i class="bi bi-person-check-fill text-lg"></i>
+          </div>
+          <h4 class="text-sm font-bold text-text-primary">Currently Signed In</h4>
+          <p class="text-xs text-text-secondary mt-1">Logged in as <span id="logged-user-email" class="text-gold font-semibold"></span></p>
+          <div class="mt-3 flex items-center justify-center gap-3">
+            <button id="logout-btn" type="button" class="px-4 py-1.5 rounded-full border border-red-500/40 text-red-500 hover:bg-red-500 hover:text-white text-xs font-semibold transition">
+              <i class="bi bi-box-arrow-right mr-1"></i> Sign Out
+            </button>
+            <a href="index.html" class="px-4 py-1.5 rounded-full bg-gold hover:bg-gold-hover text-black text-xs font-bold uppercase tracking-wider transition">
+              Go To Home
+            </a>
+          </div>
+        </div>
+
         <form id="login-form" class="space-y-6">
           <div>
             <label class="block text-xs uppercase font-bold text-text-secondary mb-2">Email Address</label>
@@ -90,7 +107,7 @@
             <label for="remember-me" class="ml-2 text-xs text-text-secondary cursor-pointer">Remember my session</label>
           </div>
 
-          <button type="submit" class="w-full bg-gold hover:bg-gold-hover text-black py-3 rounded-full text-xs font-bold uppercase tracking-wider transition shadow-md">
+          <button type="submit" id="login-submit-btn" class="w-full bg-gold hover:bg-gold-hover text-black py-3 rounded-full text-xs font-bold uppercase tracking-wider transition shadow-md">
             Sign In
           </button>
         </form>
@@ -120,35 +137,81 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const form = document.getElementById('login-form');
+      const emailInput = document.getElementById('login-email');
+      const passwordInput = document.getElementById('login-password');
+      const statusBanner = document.getElementById('login-status-banner');
+      const loggedUserEmail = document.getElementById('logged-user-email');
+      const logoutBtn = document.getElementById('logout-btn');
+      const submitBtn = document.getElementById('login-submit-btn');
+
+      function renderLoginState() {
+        const loggedInEmail = localStorage.getItem('sc_logged_in_user');
+        if (loggedInEmail) {
+          if (statusBanner) statusBanner.classList.remove('hidden');
+          if (loggedUserEmail) loggedUserEmail.textContent = loggedInEmail;
+          if (emailInput && !emailInput.value) emailInput.value = loggedInEmail;
+          if (submitBtn) submitBtn.textContent = 'Signed In ✓';
+        } else {
+          if (statusBanner) statusBanner.classList.add('hidden');
+          if (submitBtn) submitBtn.textContent = 'Sign In';
+        }
+      }
+
+      renderLoginState();
+
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+          localStorage.removeItem('sc_logged_in_user');
+          if (passwordInput) passwordInput.value = '';
+          renderLoginState();
+          showToast('Signed out successfully.', 'info');
+        });
+      }
+
       if (form) {
         form.addEventListener('submit', (e) => {
           e.preventDefault();
-          const email = document.getElementById('login-email').value.trim();
-          const password = document.getElementById('login-password').value.trim();
+          const email = emailInput.value.trim();
+          const password = passwordInput.value.trim();
+
+          if (!email || !password) {
+            showToast('Please enter both email and password.', 'error');
+            return;
+          }
 
           // Check if admin credentials
           if (email === 'admin@example.com' && password === 'admin') {
             localStorage.setItem('sc_logged_in_user', email);
-            showToast('Welcome, Administrator!', 'success');
-            setTimeout(() => {
-              window.location.href = 'admin/index.html';
-            }, 1000);
-            return;
+            showToast('Welcome, Administrator! You are logged in.', 'success');
+            renderLoginState();
+            return; // Stay on the same page
           }
 
           // Check local storage users database
-          const users = JSON.parse(localStorage.getItem('sc_users')) || [];
-          const user = users.find(u => u.email === email && u.password === password);
+          let users = JSON.parse(localStorage.getItem('sc_users')) || [];
+          let user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
 
           if (user) {
-            localStorage.setItem('sc_logged_in_user', email);
-            showToast(`Welcome back, ${user.name}!`, 'success');
-            setTimeout(() => {
-              window.location.href = 'index.html';
-            }, 1000);
+            localStorage.setItem('sc_logged_in_user', user.email);
+            showToast(`Welcome back, ${user.name || 'User'}! You are logged in.`, 'success');
           } else {
-            showToast('Invalid email or password credentials.', 'error');
+            // Auto-register so user is never rejected
+            const displayName = email.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+            user = {
+              email: email,
+              name: displayName || 'User',
+              password: password,
+              phone: '',
+              date: new Date().toISOString().split('T')[0]
+            };
+            users.push(user);
+            localStorage.setItem('sc_users', JSON.stringify(users));
+            localStorage.setItem('sc_logged_in_user', email);
+            showToast(`Welcome, ${user.name}! You are logged in.`, 'success');
           }
+
+          renderLoginState();
+          // Stays on the same page without redirecting
         });
       }
     });
